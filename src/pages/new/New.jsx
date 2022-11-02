@@ -91,7 +91,7 @@ const New = ({ inputs, title }) => {
     <div className="new">
       <Sidebar />
       <div className="newContainer">
-        <Navbar />
+        {/* <Navbar /> */}
         <div className="top">
           <h1>{title}</h1>
         </div>
@@ -126,7 +126,7 @@ const New = ({ inputs, title }) => {
                   <input
                     id={input.id}
                     type={input.type}
-                    placeholder={input.placeholder}
+                    // placeholder={input.placeholder}
                     onChange={handleInput}
                   />
                 </div>

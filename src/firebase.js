@@ -6,11 +6,12 @@ import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_KEY,
-  authDomain: "tutorial-5a2cf.firebaseapp.com",
-  projectId: "tutorial-5a2cf",
-  storageBucket: "tutorial-5a2cf.appspot.com",
-  messagingSenderId: "585126334212",
-  appId: "1:585126334212:web:8539eafc56885e1b4c4a51"
+  authDomain: "skinapp-ddc7f.firebaseapp.com",
+  projectId: "skinapp-ddc7f",
+  storageBucket: "skinapp-ddc7f.appspot.com",
+  messagingSenderId: "25765008304",
+  appId: "1:25765008304:web:729ee6eb4d0ba3b2c37c75",
+  measurementId: "G-PR6DVD7CHD"
 };
 
 const app = initializeApp(firebaseConfig);

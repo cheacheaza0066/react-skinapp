@@ -11,21 +11,21 @@ const Home = () => {
     <div className="home">
       <Sidebar />
       <div className="homeContainer">
-        <Navbar />
+        {/* <Navbar /> */}
         <div className="widgets">
           <Widget type="user" />
           <Widget type="product" />
-          <Widget type="order" />
-          <Widget type="earning" />
+          {/* <Widget type="order" /> */}
+          {/* <Widget type="earning" /> */}
         </div>
-        <div className="charts">
+        {/* <div className="charts">
           <Featured />
           <Chart title="Last 6 Months (Revenue)" aspect={2 / 1} />
-        </div>
-        <div className="listContainer">
+        </div> */}
+        {/* <div className="listContainer">
           <div className="listTitle">Latest Transactions</div>
           <Table />
-        </div>
+        </div> */}
       </div>
     </div>
   );

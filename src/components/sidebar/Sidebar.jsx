@@ -19,33 +19,36 @@ const Sidebar = () => {
   const { dispatch } = useContext(DarkModeContext);
   return (
     <div className="sidebar">
-      <div className="top">
+      {/* <div className="top">
         <Link to="/" style={{ textDecoration: "none" }}>
           <span className="logo">lamadmin</span>
         </Link>
-      </div>
+      </div> */}
       <hr />
       <div className="center">
         <ul>
           <p className="title">MAIN</p>
+          <Link to="/">
           <li>
             <DashboardIcon className="icon" />
-            <span>Dashboard</span>
+            <span>หน้าหลัก</span>
           </li>
+          </Link>
+          
           <p className="title">LISTS</p>
           <Link to="/users" style={{ textDecoration: "none" }}>
             <li>
               <PersonOutlineIcon className="icon" />
-              <span>Users</span>
+              <span>จัดการผู้ดูเเลระบบ</span>
             </li>
           </Link>
           <Link to="/products" style={{ textDecoration: "none" }}>
             <li>
               <StoreIcon className="icon" />
-              <span>Products</span>
+              <span>จัดการโรคผิวหนัง</span>
             </li>
           </Link>
-          <li>
+          {/* <li>
             <CreditCardIcon className="icon" />
             <span>Orders</span>
           </li>
@@ -79,14 +82,14 @@ const Sidebar = () => {
           <li>
             <AccountCircleOutlinedIcon className="icon" />
             <span>Profile</span>
-          </li>
+          </li> */}
           <li>
             <ExitToAppIcon className="icon" />
             <span>Logout</span>
           </li>
         </ul>
       </div>
-      <div className="bottom">
+      {/* <div className="bottom">
         <div
           className="colorOption"
           onClick={() => dispatch({ type: "LIGHT" })}
@@ -95,7 +98,7 @@ const Sidebar = () => {
           className="colorOption"
           onClick={() => dispatch({ type: "DARK" })}
         ></div>
-      </div>
+      </div> */}
     </div>
   );
 };

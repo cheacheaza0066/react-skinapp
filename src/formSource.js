@@ -28,18 +28,18 @@ export const userInputs = [
       label: "Password",
       type: "password",
     },
-    {
-      id: "address",
-      label: "Address",
-      type: "text",
-      placeholder: "Elton St. 216 NewYork",
-    },
-    {
-      id: "country",
-      label: "Country",
-      type: "text",
-      placeholder: "USA",
-    },
+    // {
+    //   id: "address",
+    //   label: "Address",
+    //   type: "text",
+    //   placeholder: "Elton St. 216 NewYork",
+    // },
+    // {
+    //   id: "country",
+    //   label: "Country",
+    //   type: "text",
+    //   placeholder: "USA",
+    // },
   ];
   
   export const productInputs = [

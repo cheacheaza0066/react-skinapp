@@ -1,7 +1,7 @@
 import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
 import { userColumns, userRows } from "../../datatablesource";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {
   collection,
@@ -11,9 +11,11 @@ import {
   onSnapshot,
 } from "firebase/firestore";
 import { db } from "../../firebase";
+import { getAuth } from "firebase/auth";
 
 const Datatable = () => {
   const [data, setData] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // const fetchData = async () => {
@@ -52,11 +54,24 @@ const Datatable = () => {
   }, []);
 
   const handleDelete = async (id) => {
-    try {
+    // try {
+    //   await deleteDoc(doc(db, "users", id));
+    //   setData(data.filter((item) => item.id !== id));
+    // } catch (err) {
+    //   console.log(err);
+    // }
+    if (window.confirm("คุณเเน่ใจนะว่าจะลบผู้ดูเเลระบบคนนี้")) {
       await deleteDoc(doc(db, "users", id));
+      getAuth()
+      .deleteUser(id)
+      .then(() => {
+        console.log('Successfully deleted user');
+      })
+      .catch((error) => {
+        console.log('Error deleting user:', error);
+      });
       setData(data.filter((item) => item.id !== id));
-    } catch (err) {
-      console.log(err);
+    
     }
   };
 
@@ -68,14 +83,15 @@ const Datatable = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
-              <div className="viewButton">View</div>
-            </Link>
-            <div
-              className="deleteButton"
-              onClick={() => handleDelete(params.row.id)}
-            >
-              Delete
+            <button onClick={()=> navigate(`/users/view/${params.id}`)}>
+              ดูข้อมูล
+            </button>
+            
+            <button onClick={()=> navigate(`/users/update/${params.id}`)}>
+              update
+            </button>
+            <div className="deleteButton"  onClick={() => handleDelete(params.row.id)}>
+              ลบ
             </div>
           </div>
         );
@@ -85,9 +101,10 @@ const Datatable = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Add New User
+        <b>ผู้ดูเเลระบบ</b>
+        
         <Link to="/users/new" className="link">
-          Add New
+          + เพิ่มผู้ดูเเลระบบ
         </Link>
       </div>
       <DataGrid

@@ -9,6 +9,7 @@ import "./style/dark.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/AuthContext";
+import UpdateAdmin from "./pages/update/update-admin";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -23,69 +24,23 @@ function App() {
     <div className={darkMode ? "app dark" : "app"}>
       <BrowserRouter>
         <Routes>
-          <Route path="/">
-            <Route path="login" element={<Login />} />
-            <Route
-              index
-              element={
-                <RequireAuth>
-                  <Home />
-                </RequireAuth>
-              }
-            />
-            <Route path="users">
-              <Route
-                index
-                element={
-                  <RequireAuth>
-                    <List />
-                  </RequireAuth>
-                }
-              />
-              <Route
-                path=":userId"
-                element={
-                  <RequireAuth>
-                    <Single />
-                  </RequireAuth>
-                }
-              />
-              <Route
-                path="new"
-                element={
-                  <RequireAuth>
-                    <New inputs={userInputs} title="Add New User" />
-                  </RequireAuth>
-                }
-              />
+            <Route path="/">
+                <Route path="login" element={<Login />}/>
+                <Route index element={<RequireAuth><Home /></RequireAuth>}/>
+                <Route path="users">
+                      <Route index element={ <RequireAuth><List /></RequireAuth>}/>
+                      <Route path="update/:id" element={ <RequireAuth> <UpdateAdmin inputs={userInputs} title="เเบบฟอร์มอัพเดทผู้ดูเเลระบบ" /></RequireAuth> }/>
+                      <Route path="view/:id" element={ <RequireAuth> <Single inputs={userInputs} title="เเบบฟอร์มอัพเดทผู้ดูเเลระบบ" /></RequireAuth> }/>
+
+                      <Route path="new" element={ <RequireAuth> <New inputs={userInputs} title="เเบบฟอร์มเพิ่มผู้ดูเเลระบบ" /></RequireAuth> }/>
+
+                </Route>
+                <Route path="products">
+                      <Route index element={ <RequireAuth><List /></RequireAuth>}/>
+                      <Route path=":productId" element={<RequireAuth><Single /></RequireAuth>}/>
+                      <Route path="new" element={ <RequireAuth><New inputs={productInputs} title="Add New Product" /></RequireAuth>}/>
+                </Route>
             </Route>
-            <Route path="products">
-              <Route
-                index
-                element={
-                  <RequireAuth>
-                    <List />
-                  </RequireAuth>
-                }
-              />
-              <Route
-                path=":productId"
-                element={
-                  <RequireAuth>
-                    <Single />
-                  </RequireAuth>
-                }
-              />
-              <Route
-                path="new"
-                element={
-                  <RequireAuth>
-                    <New inputs={productInputs} title="Add New Product" />
-                  </RequireAuth>
-                }
-              />
-            </Route>
-          </Route>
         </Routes>
       </BrowserRouter>
     </div>

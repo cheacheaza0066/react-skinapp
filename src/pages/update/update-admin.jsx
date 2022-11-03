@@ -1,4 +1,3 @@
-import "./new.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useEffect, useState } from "react";
@@ -9,29 +8,30 @@ import {
   getDoc,
   serverTimestamp,
   setDoc,
+  updateDoc,
 } from "firebase/firestore";
 import { auth, db, storage } from "../../firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateEmail, updatePassword } from "firebase/auth";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useNavigate, useParams } from "react-router-dom";
 
-const New = ({ inputs, title }) => {
-  const [file, setFile] = useState("");
-  const [data, setData] = useState({});
-  const [per, setPerc] = useState(null);
+const initialState = {
+  displayName : "",
+  email:"",
+  phone:"",
+  password:"",
+  address : ""
+}
+const UpdateAdmin = ()=>{
   const navigate = useNavigate()
-  // const {id} = useParams();
-  // useEffect(()=>{
-  //   id && getSingleUser();
-  // },[id]);
+  const[data,setData] = useState(initialState);
+  const {displayName,email,phone,password,address} = data;
+  const [file, setFile] = useState("");
+  const [per, setPerc] = useState(null);
+  const [isSubmit,setIsSubmit] = useState(null);
 
-  // const getSingleUser = async () =>{
-  //   const docRef = doc(db,"users",id);
-  //   const snapshot = await getDoc(docRef);
-  //   if (snapshot) {
-  //     setData({...snapshot.data()});
-  //   }
-  // }
+
+  
 
   useEffect(() => {
     const uploadFile = () => {
@@ -72,24 +72,17 @@ const New = ({ inputs, title }) => {
     file && uploadFile();
   }, [file]);
 
-  console.log(data);
-
-  const handleInput = (e) => {
-    const id = e.target.id;
-    const value = e.target.value;
-
-    setData({ ...data, [id]: value });
+  const handleChange =(e)=>{
+    setData({...data, [e.target.name]:e.target.value});
   };
 
-  const handleAdd = async (e) => {
+  
+  const handleSubmut = async (e)=>{
+    setIsSubmit(true);
     e.preventDefault();
     try {
-      const res = await createUserWithEmailAndPassword(
-        auth,
-        data.email,
-        data.password
-      );
-      await setDoc(doc(db, "users", res.user.uid), {
+     
+      await updateDoc(doc(db, "users", id), {
         ...data,
         timeStamp: serverTimestamp(),
       });
@@ -98,14 +91,26 @@ const New = ({ inputs, title }) => {
       console.log(err);
     }
   };
+  const {id} = useParams();
+  useEffect(()=>{
+    id && getSingleUser();
+  },[id]);
 
-  return (
-    <div className="new">
+  const getSingleUser = async () =>{
+    const docRef = doc(db,"users",id);
+    const snapshot = await getDoc(docRef);
+    if (snapshot) {
+      setData({...snapshot.data()});
+    }
+  }
+
+    return(
+      <div className="new">
       <Sidebar />
       <div className="newContainer">
         {/* <Navbar /> */}
         <div className="top">
-          <h1>{title}</h1>
+          <h1>ฟอร์มเเก้ไขผู้ดูเเลระบบ</h1>
         </div>
         <div className="bottom">
           <div className="left">
@@ -119,7 +124,7 @@ const New = ({ inputs, title }) => {
             />
           </div>
           <div className="right">
-            <form onSubmit={handleAdd}>
+            <form onSubmit={handleSubmut}>
               <div className="formInput">
                 <label htmlFor="file">
                   อัพโหลดรูปภาพ: <DriveFolderUploadOutlinedIcon className="icon" />
@@ -131,28 +136,32 @@ const New = ({ inputs, title }) => {
                   style={{ display: "none" }}
                 />
               </div>
+              <div className="formInput">
+                 <label >ชื่อ</label>
+                 <input  type="text" name="displayName" onChange={handleChange} value={displayName} />
+                 <label >อีเมล</label>
+                 <input required type="email" name="email" onChange={handleChange} value={email} />
+                 <label >เบอร์โทรศัพท์</label>
+                 <input required type="text" name="phone" onChange={handleChange} value={phone} />
+                 <label >รหัสผ่าน</label>
+                 <input required type="password" name="password" onChange={handleChange} value={password} />
+                 <label >ที่อยู่</label>
+                 <input required type="text" name="address" onChange={handleChange} value={address} />
 
-              {inputs.map((input) => (
-                <div className="formInput" key={input.id}>
-                  <label>{input.label}</label>
-                  <input
-                  required
-                    id={input.id}
-                    type={input.type}
-                    // placeholder={input.placeholder}
-                    onChange={handleInput}
-                  />
+
+
                 </div>
-              ))}
+                  {/* <button type="submit" >อัพเดท</button> */}
+              
               <button disabled={per !== null && per < 100} type="submit">
-                Send
+                อัพเดท
               </button>
             </form>
           </div>
         </div>
       </div>
     </div>
-  );
-};
+    )
+}
 
-export default New;
+export default UpdateAdmin

@@ -9,13 +9,30 @@ import {
   deleteDoc,
   doc,
   onSnapshot,
+  
 } from "firebase/firestore";
-import { db } from "../../firebase";
-import { getAuth } from "firebase/auth";
+import { auth, db } from "../../firebase";
+import { getAuth, deleteUser, EmailAuthProvider, reauthenticateWithCredential } from "firebase/auth";
+import { Button, Card } from "semantic-ui-react";
+import { async } from "@firebase/util";
+import { Password } from "@mui/icons-material";
+// import userModel from "../../components/model/userModel";
+
+
+
+
+
 
 const Datatable = () => {
   const [data, setData] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [user, setUser] = useState({});
   const navigate = useNavigate();
+ 
+
+const deleteAcount   = () => {
+user.delete();
+}
 
   useEffect(() => {
     // const fetchData = async () => {
@@ -52,6 +69,19 @@ const Datatable = () => {
       unsub();
     };
   }, []);
+  const authDelete = async(id) =>{
+    console.log("delete auth")
+    if (window.confirm("คุณเเน่ใจนะว่าจะลบผู้ดูเเลระบบคนนี้")) {
+      try {
+        await deleteUser(id);
+        console.log(id);
+      } catch (error) {
+              console.log("err");
+      }
+    
+      setData(data.filter((item) => item.id !== id));
+    }
+  }
 
   const handleDelete = async (id) => {
     // try {
@@ -60,39 +90,47 @@ const Datatable = () => {
     // } catch (err) {
     //   console.log(err);
     // }
+
     if (window.confirm("คุณเเน่ใจนะว่าจะลบผู้ดูเเลระบบคนนี้")) {
-      await deleteDoc(doc(db, "users", id));
-      getAuth()
-      .deleteUser(id)
-      .then(() => {
-        console.log('Successfully deleted user');
-      })
-      .catch((error) => {
-        console.log('Error deleting user:', error);
-      });
-      setData(data.filter((item) => item.id !== id));
+      try {
+        // await 
+        await deleteDoc(doc(db, "users", id));
+        console.log(id);
+      } catch (error) {
+              console.log("err");
+      }
     
+      setData(data.filter((item) => item.id !== id));
     }
   };
+  
+  console.log(data)
 
   const actionColumn = [
     {
       field: "action",
       headerName: "Action",
-      width: 200,
+      width: 250,
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <button onClick={()=> navigate(`/users/view/${params.id}`)}>
+            
+            
+            <button className="btn btn-info" onClick={()=> navigate(`/users/view/${params.id}`)}>
               ดูข้อมูล
             </button>
             
-            <button onClick={()=> navigate(`/users/update/${params.id}`)}>
+            <button className="btn btn-warning" onClick={()=> navigate(`/users/update/${params.id}`)}>
               update
             </button>
-            <div className="deleteButton"  onClick={() => handleDelete(params.row.id)}>
+
+  
+            
+            <div className="btn btn-danger"  onClick={() => handleDelete(params.row.id)}>
               ลบ
             </div>
+            
+            
           </div>
         );
       },
@@ -103,8 +141,9 @@ const Datatable = () => {
       <div className="datatableTitle">
         <b>ผู้ดูเเลระบบ</b>
         
-        <Link to="/users/new" className="link">
+        <Link to="/users/AddUser" className="btn btn-success">
           + เพิ่มผู้ดูเเลระบบ
+          {/* <button>+ เพิ่มผู้ดูเเลระบบ</button> */}
         </Link>
       </div>
       <DataGrid

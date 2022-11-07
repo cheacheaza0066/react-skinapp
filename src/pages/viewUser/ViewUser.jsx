@@ -1,35 +1,42 @@
 import "./single.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import {
-  collection,
-  getDocs,
-  deleteDoc,
+
   doc,
-  onSnapshot,
-} from "firebase/firestore";
-import { db } from "../../firebase";
-import { useEffect } from "react";
+  getDoc,
+  
+}  from "firebase/firestore";
+import { db, storage } from "../../firebase";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { Button } from 'react-bootstrap';
 
-const Single = () => {
+const initialState = {
+  displayName : "",
+  email:"",
+  phone:"",
+  password:"",
+  address : ""
+}
+
+const ViewUser = () => {
+  const navigate = useNavigate()
+  const[data,setData] = useState(initialState);
+  const {displayName,email,phone,password,address,img} = data;
+
+  const {id} = useParams();
   useEffect(()=>{
-    const unsub = onSnapshot(
-      collection(db, "users"),
-      (snapShot) => {
-        let list = [];
-        snapShot.docs.forEach((doc) => {
-          list.push({ id: doc.id, ...doc.data() });
-        });
-        // setData(list);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    id && getSingleUser();
+  },[id]);
 
-    return () => {
-      unsub();
-    };
-  })
+  const getSingleUser = async () =>{
+    const docRef = doc(db,"users",id);
+    const snapshot = await getDoc(docRef);
+    if (snapshot) {
+      setData({...snapshot.data()});
+    }
+  }
+  
   return (
     <div className="single">
       <Sidebar />
@@ -41,39 +48,40 @@ const Single = () => {
             <h1 className="title">Information</h1>
             <div className="item">
               <img
-                src="https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
+                src={img}
                 alt=""
                 className="itemImg"
               />
               <div className="details">
-                <h1 className="itemTitle">Jane Doe</h1>
+                <h1 className="itemTitle">{displayName}</h1>
                 <div className="detailItem">
                   <span className="itemKey">Email:</span>
-                  <span className="itemValue">janedoe@gmail.com</span>
+                  <span className="itemValue">{email}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Phone:</span>
-                  <span className="itemValue">+1 2345 67 89</span>
+                  <span className="itemValue">{phone}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Address:</span>
                   <span className="itemValue">
-                    Elton St. 234 Garden Yd. NewYork
+                  {address}
                   </span>
-                </div>
-                <div className="detailItem">
-                  <span className="itemKey">Country:</span>
-                  <span className="itemValue">USA</span>
+                </div> 
+                <div>
+                
+
                 </div>
               </div>
             </div>
           </div>
-          
         </div>
         
       </div>
+      
     </div>
+    
   );
 };
 
-export default Single;
+export default ViewUser;

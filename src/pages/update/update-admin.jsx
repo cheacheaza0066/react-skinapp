@@ -1,6 +1,6 @@
 import Sidebar from "../../components/sidebar/Sidebar";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   addDoc,
   collection,
@@ -11,24 +11,27 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { auth, db, storage } from "../../firebase";
-import { createUserWithEmailAndPassword, updateEmail, updatePassword } from "firebase/auth";
+// import { createUserWithEmailAndPassword, getAuth, updateEmail, updatePassword  } from "firebase/auth";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useNavigate, useParams } from "react-router-dom";
+
 
 const initialState = {
   displayName : "",
   email:"",
   phone:"",
   password:"",
-  address : ""
+  address : "",
+  img : ""
 }
 const UpdateAdmin = ()=>{
   const navigate = useNavigate()
   const[data,setData] = useState(initialState);
-  const {displayName,email,phone,password,address} = data;
+  const {displayName,email,phone,password,address,img} = data;
   const [file, setFile] = useState("");
   const [per, setPerc] = useState(null);
   const [isSubmit,setIsSubmit] = useState(null);
+
 
 
   
@@ -81,7 +84,7 @@ const UpdateAdmin = ()=>{
     setIsSubmit(true);
     e.preventDefault();
     try {
-     
+
       await updateDoc(doc(db, "users", id), {
         ...data,
         timeStamp: serverTimestamp(),
@@ -115,11 +118,7 @@ const UpdateAdmin = ()=>{
         <div className="bottom">
           <div className="left">
             <img
-              src={
-                file
-                  ? URL.createObjectURL(file)
-                  : "https://cdn-icons-png.flaticon.com/512/1946/1946429.png"
-              }
+              src={img}
               alt=""
             />
           </div>
@@ -139,11 +138,11 @@ const UpdateAdmin = ()=>{
               <div className="formInput">
                  <label >ชื่อ</label>
                  <input  type="text" name="displayName" onChange={handleChange} value={displayName} />
-                 <label >อีเมล</label>
-                 <input required type="email" name="email" onChange={handleChange} value={email} />
+                 {/* <label >อีเมล</label>
+                 <input  required type="email" name="email" onChange={handleChange} value={email} /> */}
                  <label >เบอร์โทรศัพท์</label>
-                 <input required type="text" name="phone" onChange={handleChange} value={phone} />
-                 <label >รหัสผ่าน</label>
+                 {/* <input required type="text" name="phone" onChange={handleChange} value={phone} />
+                 <label >รหัสผ่าน</label> */}
                  <input required type="password" name="password" onChange={handleChange} value={password} />
                  <label >ที่อยู่</label>
                  <input required type="text" name="address" onChange={handleChange} value={address} />

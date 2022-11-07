@@ -15,7 +15,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useNavigate, useParams } from "react-router-dom";
 
-const New = ({ inputs, title }) => {
+const AddUser = ({ inputs, title }) => {
   const [file, setFile] = useState("");
   const [data, setData] = useState({});
   const [per, setPerc] = useState(null);
@@ -35,6 +35,7 @@ const New = ({ inputs, title }) => {
 
   useEffect(() => {
     const uploadFile = () => {
+      
       const name = new Date().getTime() + file.name;
 
       console.log(name);
@@ -125,6 +126,7 @@ const New = ({ inputs, title }) => {
                   อัพโหลดรูปภาพ: <DriveFolderUploadOutlinedIcon className="icon" />
                 </label>
                 <input
+                required
                   type="file"
                   id="file"
                   onChange={(e) => setFile(e.target.files[0])}
@@ -144,8 +146,8 @@ const New = ({ inputs, title }) => {
                   />
                 </div>
               ))}
-              <button disabled={per !== null && per < 100} type="submit">
-                Send
+              <button disabled={per !== null && per < 100} type="submit" className="btn btn-success">
+                เพิ่มผู้ดูเเลระบบ
               </button>
             </form>
           </div>
@@ -155,4 +157,4 @@ const New = ({ inputs, title }) => {
   );
 };
 
-export default New;
+export default AddUser;

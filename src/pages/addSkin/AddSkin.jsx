@@ -1,6 +1,7 @@
+import "./addSkin.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   addDoc,
   collection,
@@ -8,36 +9,33 @@ import {
   getDoc,
   serverTimestamp,
   setDoc,
-  updateDoc,
 } from "firebase/firestore";
 import { auth, db, storage } from "../../firebase";
-// import { createUserWithEmailAndPassword, getAuth, updateEmail, updatePassword  } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useNavigate, useParams } from "react-router-dom";
 
-
-const initialState = {
-  displayName : "",
-  email:"",
-  phone:"",
-  password:"",
-  address : "",
-  img : ""
-}
-const UpdateAdmin = ()=>{
-  const navigate = useNavigate()
-  const[data,setData] = useState(initialState);
-  const {displayName,email,phone,password,address,img} = data;
+const AddSkin = ({ inputs, title }) => {
   const [file, setFile] = useState("");
+  const [data, setData] = useState({});
   const [per, setPerc] = useState(null);
-  const [isSubmit,setIsSubmit] = useState(null);
+  const navigate = useNavigate()
+  // const {id} = useParams();
+  // useEffect(()=>{
+  //   id && getSingleUser();
+  // },[id]);
 
-
-
-  
+  // const getSingleUser = async () =>{
+  //   const docRef = doc(db,"users",id);
+  //   const snapshot = await getDoc(docRef);
+  //   if (snapshot) {
+  //     setData({...snapshot.data()});
+  //   }
+  // }
 
   useEffect(() => {
     const uploadFile = () => {
+      
       const name = new Date().getTime() + file.name;
 
       console.log(name);
@@ -75,94 +73,102 @@ const UpdateAdmin = ()=>{
     file && uploadFile();
   }, [file]);
 
-  const handleChange =(e)=>{
-    setData({...data, [e.target.name]:e.target.value});
+//   console.log(data);
+
+  const handleInput = (e) => {
+    const id = e.target.id;
+    const value = e.target.value;
+
+    setData({ ...data, [id]: value });
   };
 
-  
-  const handleSubmut = async (e)=>{
-    setIsSubmit(true);
+  const handleAdd = async (e) => {
     e.preventDefault();
     try {
+      
+    //   await setDoc(doc(db,"Skin","Skins"), {
+    //     ...data,
+    //     timeStamp: serverTimestamp(),
+    //   });
 
-      await updateDoc(doc(db, "users", id), {
+    await addDoc(collection(db, "Skin"), {
         ...data,
-        timeStamp: serverTimestamp(),
       });
+      console.log(data)    
       navigate(-1)
+
     } catch (err) {
       console.log(err);
     }
   };
-  const {id} = useParams();
-  useEffect(()=>{
-    id && getSingleUser();
-  },[id]);
 
-  const getSingleUser = async () =>{
-    const docRef = doc(db,"users",id);
-    const snapshot = await getDoc(docRef);
-    if (snapshot) {
-      setData({...snapshot.data()});
-    }
-  }
-
-    return(
-      <div className="new">
+  return (
+    <div className="new">
       <Sidebar />
       <div className="newContainer">
         {/* <Navbar /> */}
         <div className="top">
-          <h1>ฟอร์มเเก้ไขผู้ดูเเลระบบ</h1>
+          <h1>{title}</h1>
         </div>
         <div className="bottom">
           <div className="left">
             <img
-              src={img}
+              src={
+                file
+                  ? URL.createObjectURL(file)
+                  : "https://cdn-icons-png.flaticon.com/512/1946/1946429.png"
+              }
               alt=""
             />
           </div>
           <div className="right">
-            <form onSubmit={handleSubmut}>
+            <form onSubmit={handleAdd}>
               <div className="formInput">
                 <label htmlFor="file">
                   อัพโหลดรูปภาพ: <DriveFolderUploadOutlinedIcon className="icon" />
                 </label>
                 <input
+                required
                   type="file"
                   id="file"
                   onChange={(e) => setFile(e.target.files[0])}
                   style={{ display: "none" }}
                 />
               </div>
-              <div className="formInput">
-                 <label >ชื่อ</label>
-                 <input  type="text" name="displayName" onChange={handleChange} value={displayName} />
 
-                 {/* <label >อีเมล</label>
-                 <input  required type="email" name="email" onChange={handleChange} value={email} /> */}
-
-                 <label >เบอร์โทรศัพท์</label>
-                 <input required type="text" name="phone" onChange={handleChange} value={phone} />
-                 {/* <label >รหัสผ่าน</label>
-                 <input required type="password" name="password" onChange={handleChange} value={password} /> */}
-                 <label >ที่อยู่</label>
-                 <input required type="text" name="address" onChange={handleChange} value={address} />
-
-
-
+              {/* {inputs.map((input) => (
+                <div className="formInput" key={input.id}>
+                  <label>{input.label}</label>
+                  <input
+                  required
+                    id={input.id}
+                    type={input.type}
+                    // placeholder={input.placeholder}
+                    onChange={handleInput}
+                  />
                 </div>
-                  {/* <button type="submit" >อัพเดท</button> */}
-              
-              <button disabled={per !== null && per < 100} type="submit">
-                อัพเดท
+              ))} */}
+
+              <div className="formInput">
+                <label htmlFor="">ชื่อภาษาไทย</label>
+                <input onChange={handleInput} id="nameThai" type="text" />
+                <label htmlFor="">ชื่อภาษาอังกิด</label>
+                <input onChange={handleInput} id="nameEng" type="text" />
+                <label htmlFor="">รายละเอียด</label>
+                <textarea onChange={handleInput}  name="" id="detail" cols="30" rows="10">
+                </textarea>
+              </div>
+
+
+              <button disabled={per !== null && per < 100} type="submit" className="btn btn-success">
+                เพิ่มโรคผิวหนัง
               </button>
             </form>
           </div>
         </div>
       </div>
     </div>
-    )
-}
+  );
+};
 
-export default UpdateAdmin
+export default AddSkin;

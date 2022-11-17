@@ -23,16 +23,13 @@ import { Password } from "@mui/icons-material";
 
 
 
-const Datatable = () => {
+const DatatableUser = () => {
   const [data, setData] = useState([]);
   const [open, setOpen] = useState(false);
   const [user, setUser] = useState({});
   const navigate = useNavigate();
  
 
-const deleteAcount   = () => {
-user.delete();
-}
 
   useEffect(() => {
     // const fetchData = async () => {
@@ -99,7 +96,6 @@ user.delete();
       } catch (error) {
               console.log("err");
       }
-    
       setData(data.filter((item) => item.id !== id));
     }
   };
@@ -126,9 +122,9 @@ user.delete();
 
   
             
-            <div className="btn btn-danger"  onClick={() => handleDelete(params.row.id)}>
+            {/* <div className="btn btn-danger"  onClick={() => handleDelete(params.row.id)}>
               ลบ
-            </div>
+            </div> */}
             
             
           </div>
@@ -158,4 +154,4 @@ user.delete();
   );
 };
 
-export default Datatable;
+export default DatatableUser;

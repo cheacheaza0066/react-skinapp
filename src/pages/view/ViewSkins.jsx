@@ -2,39 +2,43 @@ import "./single.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import {
 
+    collection,
   doc,
   getDoc,
+  getDocs,
   
 }  from "firebase/firestore";
 import { db, storage } from "../../firebase";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Button } from 'react-bootstrap';
 
 const initialState = {
-  displayName : "",
-  email:"",
-  phone:"",
-  password:"",
-  address : ""
+nameThai : "",
+nameEng:"",
+  detail:"",
+  
 }
 
-const ViewUser = () => {
+const ViewSkin = () => {
   const navigate = useNavigate()
   const[data,setData] = useState(initialState);
-  const {displayName,email,phone,password,address,img} = data;
+  const {nameThai,nameEng,detail,img} = data;
 
   const {id} = useParams();
   useEffect(()=>{
-    id && getSingleUser();
+    id && getSingleSkin();
   },[id]);
 
-  const getSingleUser = async () =>{
-    const docRef = doc(db,"users",id);
+
+  const getSingleSkin = async () =>{
+    const docRef = doc(db,"Skin",id);
     const snapshot = await getDoc(docRef);
     if (snapshot) {
       setData({...snapshot.data()});
+      console.log("ข้อมูลมา Skin")
     }
+    
+
   }
   
   return (
@@ -53,19 +57,15 @@ const ViewUser = () => {
                 className="itemImg"
               />
               <div className="details">
-                <h1 className="itemTitle">{displayName}</h1>
+                <h1 className="itemTitle">{nameThai}</h1>
                 <div className="detailItem">
-                  <span className="itemKey">Email:</span>
-                  <span className="itemValue">{email}</span>
+                  <span className="itemKey">nameEng:</span>
+                  <span className="itemValue">{nameEng}</span>
                 </div>
                 <div className="detailItem">
-                  <span className="itemKey">Phone:</span>
-                  <span className="itemValue">{phone}</span>
-                </div>
-                <div className="detailItem">
-                  <span className="itemKey">Address:</span>
+                  <span className="itemKey">detail:</span>
                   <span className="itemValue">
-                  {address}
+                  {detail}
                   </span>
                 </div> 
                 <div>
@@ -84,4 +84,4 @@ const ViewUser = () => {
   );
 };
 
-export default ViewUser;
+export default ViewSkin;

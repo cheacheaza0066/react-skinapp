@@ -48,36 +48,23 @@ export const userInputs = [
     // },
   ];
   
-  export const productInputs = [
+  export const SkinInputs = [
     {
-      id: 1,
-      label: "Title",
+      id: "nameThai",
+      label: "ชื่อภาษาไทย",
       type: "text",
-      placeholder: "Apple Macbook Pro",
+      placeholder: "John Doe",
     },
     {
-      id: 2,
-      label: "Description",
+      id: "nameEng",
+      label: "ชื่อภาษาอังกฤษ",
       type: "text",
-      placeholder: "Description",
-    },
-    {
-      id: 3,
-      label: "Category",
+      placeholder: "John Doe",
+    },{
+      id: "detail",
+      label: "รายละเอียด",
       type: "text",
-      placeholder: "Computers",
-    },
-    {
-      id: 4,
-      label: "Price",
-      type: "text",
-      placeholder: "100",
-    },
-    {
-      id: 5,
-      label: "Stock",
-      type: "text",
-      placeholder: "in stock",
+      placeholder: "John Doe",
     },
   ];
   

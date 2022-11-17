@@ -82,9 +82,9 @@ const UpdatePassword = ()=>{
                  <input ref={passwordConfirmRef}  type="password" name="password"  />
           
                 </div>
-                <button className="btn btn-info" onClick={()=> navigate(`/users/updateProfile`)}>
+                {/* <button className="btn btn-info" onClick={()=> navigate(`/users/updateProfile`)}>
               กลับ
-            </button>
+            </button> */}
               <button type="submit">
                 อัพเดท
               </button>

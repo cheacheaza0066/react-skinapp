@@ -89,9 +89,9 @@ const UpdateAdmin = ()=>{
               <button type="submit">
                 อัพเดท
               </button>
-              <button className="btn btn-info" onClick={()=> navigate(`/users/updatePassword`)}>
+              {/* <button className="btn btn-info" onClick={()=> navigate(`/users/updatePassword`)}>
               จัดการรหัสผ่าน
-            </button>
+            </button> */}
             </form>
           </div>
         </div>

@@ -17,17 +17,15 @@ import { useNavigate, useParams } from "react-router-dom";
 
 
 const initialState = {
-  displayName : "",
-  email:"",
-  phone:"",
-  password:"",
-  address : "",
+    nameThai : "",
+    nameEng:"",
+    detail : "",
   img : ""
 }
-const UpdateAdmin = ()=>{
+const UpdateSkin = ()=>{
   const navigate = useNavigate()
   const[data,setData] = useState(initialState);
-  const {displayName,email,phone,password,address,img} = data;
+  const {nameThai,nameEng,detail,img} = data;
   const [file, setFile] = useState("");
   const [per, setPerc] = useState(null);
   const [isSubmit,setIsSubmit] = useState(null);
@@ -85,7 +83,7 @@ const UpdateAdmin = ()=>{
     e.preventDefault();
     try {
 
-      await updateDoc(doc(db, "users", id), {
+      await updateDoc(doc(db, "Skin", id), {
         ...data,
         timeStamp: serverTimestamp(),
       });
@@ -100,7 +98,7 @@ const UpdateAdmin = ()=>{
   },[id]);
 
   const getSingleUser = async () =>{
-    const docRef = doc(db,"users",id);
+    const docRef = doc(db,"Skin",id);
     const snapshot = await getDoc(docRef);
     if (snapshot) {
       setData({...snapshot.data()});
@@ -113,7 +111,7 @@ const UpdateAdmin = ()=>{
       <div className="newContainer">
         {/* <Navbar /> */}
         <div className="top">
-          <h1>ฟอร์มเเก้ไขผู้ดูเเลระบบ</h1>
+          <h1>ฟอร์มเเก้ไขโรคผิวหนัง</h1>
         </div>
         <div className="bottom">
           <div className="left">
@@ -136,19 +134,13 @@ const UpdateAdmin = ()=>{
                 />
               </div>
               <div className="formInput">
-                 <label >ชื่อ</label>
-                 <input  type="text" name="displayName" onChange={handleChange} value={displayName} />
-
-                 {/* <label >อีเมล</label>
-                 <input  required type="email" name="email" onChange={handleChange} value={email} /> */}
-
-                 <label >เบอร์โทรศัพท์</label>
-                 <input required type="text" name="phone" onChange={handleChange} value={phone} />
-                 {/* <label >รหัสผ่าน</label>
-                 <input required type="password" name="password" onChange={handleChange} value={password} /> */}
-                 <label >ที่อยู่</label>
-                 <input required type="text" name="address" onChange={handleChange} value={address} />
-
+                 <label >ชื่อภาษาไทย</label>
+                 <input  type="text" name="nameThai" onChange={handleChange} value={nameThai} />
+                 <label >ชื่อภาษาอังกิด</label>
+                 <input  type="text" name="nameEng" onChange={handleChange} value={nameEng} />
+                 <label >รายละเอียด</label>
+                 <textarea onChange={handleChange} value={detail}  name="" id="detail" cols="30" rows="10">
+                </textarea>
 
 
                 </div>
@@ -165,4 +157,4 @@ const UpdateAdmin = ()=>{
     )
 }
 
-export default UpdateAdmin
+export default UpdateSkin

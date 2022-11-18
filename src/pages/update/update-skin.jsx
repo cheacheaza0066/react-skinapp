@@ -17,6 +17,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 
 const initialState = {
+  idSkin : "",
     nameThai : "",
     nameEng:"",
     detail : "",
@@ -25,7 +26,8 @@ const initialState = {
 const UpdateSkin = ()=>{
   const navigate = useNavigate()
   const[data,setData] = useState(initialState);
-  const {nameThai,nameEng,detail,img} = data;
+  
+  const {idSkin,nameThai,nameEng,detail,img} = data;
   const [file, setFile] = useState("");
   const [per, setPerc] = useState(null);
   const [isSubmit,setIsSubmit] = useState(null);
@@ -85,6 +87,7 @@ const UpdateSkin = ()=>{
 
       await updateDoc(doc(db, "Skin", id), {
         ...data,
+        idSkin : Number(idSkin),
         timeStamp: serverTimestamp(),
       });
       navigate(-1)
@@ -134,6 +137,8 @@ const UpdateSkin = ()=>{
                 />
               </div>
               <div className="formInput">
+              <label >รหัสโรคผิวหนัง</label>
+                 <input  type="number" name="idSkin" onChange={handleChange} pattern = "[0-9]*" value={idSkin} />
                  <label >ชื่อภาษาไทย</label>
                  <input  type="text" name="nameThai" onChange={handleChange} value={nameThai} />
                  <label >ชื่อภาษาอังกิด</label>

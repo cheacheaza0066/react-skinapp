@@ -18,6 +18,7 @@ import { useNavigate, useParams } from "react-router-dom";
 const AddSkin = ({ inputs, title }) => {
   const [file, setFile] = useState("");
   const [data, setData] = useState({});
+  const [idSkin, setIdSkin] = useState();
   const [per, setPerc] = useState(null);
   const navigate = useNavigate()
   // const {id} = useParams();
@@ -78,9 +79,9 @@ const AddSkin = ({ inputs, title }) => {
   const handleInput = (e) => {
     const id = e.target.id;
     const value = e.target.value;
-
     setData({ ...data, [id]: value });
   };
+  
 
   const handleAdd = async (e) => {
     e.preventDefault();
@@ -90,9 +91,12 @@ const AddSkin = ({ inputs, title }) => {
     //     ...data,
     //     timeStamp: serverTimestamp(),
     //   });
+    console.log(typeof idSkin);
+
 
     await addDoc(collection(db, "Skin"), {
         ...data,
+        idSkin : Number(idSkin)
       });
       console.log(data)    
       navigate(-1)
@@ -150,6 +154,8 @@ const AddSkin = ({ inputs, title }) => {
               ))} */}
 
               <div className="formInput">
+              <label htmlFor="">รหัสโรคผิวหนัง</label>
+                <input onChange={(e)=>{setIdSkin(e.target.valueAsNumber)}} id="idSkin" type="number" pattern = "[0-9]*"/>
                 <label htmlFor="">ชื่อภาษาไทย</label>
                 <input onChange={handleInput} id="nameThai" type="text" />
                 <label htmlFor="">ชื่อภาษาอังกิด</label>

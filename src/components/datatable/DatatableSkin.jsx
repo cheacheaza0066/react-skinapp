@@ -1,21 +1,17 @@
 import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
-import { userRows,SkinColumns } from "../../datatablesource";
+import { SkinColumns } from "../../datatablesource";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {
   collection,
-  getDocs,
   deleteDoc,
   doc,
   onSnapshot,
   
 } from "firebase/firestore";
-import { auth, db } from "../../firebase";
-import { getAuth, deleteUser, EmailAuthProvider, reauthenticateWithCredential } from "firebase/auth";
-import { Button, Card } from "semantic-ui-react";
-import { async } from "@firebase/util";
-import { Password } from "@mui/icons-material";
+import {  db } from "../../firebase";
+import {  deleteUser,} from "firebase/auth";
 // import userModel from "../../components/model/userModel";
 
 

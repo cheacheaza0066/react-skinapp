@@ -2,13 +2,13 @@ import "./view.css";
 import Sidebar from "../../components/sidebar/Sidebar";
 import {
 
- 
+    collection,
   doc,
   getDoc,
-
+  getDocs,
   
 }  from "firebase/firestore";
-import { db, } from "../../firebase";
+import { db, storage } from "../../firebase";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -42,27 +42,37 @@ const ViewSkin = () => {
   }
   
   return (
-   
     <div className="single">
       <Sidebar />
       <div className="singleContainer">
         {/* <Navbar /> */}
         <div className="top">
           <div className="left">
-            <div className="container">
-                    <div className="image mb-3">
-                    <img className="imgskin" src={img} alt="" />
-                    </div>
-                 <h1 className="itemTitle  ms-4">{nameThai}</h1>
-                 <div className="detailItem ms-4">
-                  <span className="itemValue ms-1"> {nameEng}</span>
+            <div className="editButton">Edit</div>
+            <h1 className="title">Information</h1>
+            <div className="item">
+              <img
+                src={img}
+                alt=""
+                className="itemImg"
+              />
+              <div className="details">
+                <h1 className="itemTitle">{nameThai}</h1>
+                <div className="detailItem">
+                  <span className="itemKey">nameEng:</span>
+                  <span className="itemValue">{nameEng}</span>
                 </div>
+                <div className="detailItem">
+                  <span className="itemKey">detail:</span>
+                  <span className="itemValue">
+                  {detail}
+                  </span>
+                </div> 
+                <div>
+                
 
-                <h4 className="detail-h1 ms-4 mt-5"><b>ข้อมูลโรค {nameThai}</b></h4>
-
-                <div className="detail ms-4 me-4">
-                  <span className="itemValue ms-1"> {detail}</span>
                 </div>
+              </div>
             </div>
           </div>
         </div>

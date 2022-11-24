@@ -65,31 +65,22 @@ const UpdatePassword = ()=>{
           <h1>ฟอร์มเเก้ไขผู้ดูเเลระบบ</h1>
         </div>
         <div className="bottom">
-          <div className="left">
-          
-          </div>
-          <div className="right">
+         
             <form onSubmit={handleSubmit}>
-              <div className="formInput">
-              </div>
-              <div className="formInput">
-                
-                
-                 <label >รหัสผ่าน</label>
-                 <input  ref={passwordRef}  type="password" name="password"  />
+             
+              <div className="formInput ms-4 mt-3">
+                 <label class="form-label" >รหัสผ่าน</label>
+                 <input  class="form-control" ref={passwordRef}  type="password" name="password"  />
 
-                 <label >รี รหัสผ่าน</label>
-                 <input ref={passwordConfirmRef}  type="password" name="password"  />
-          
+                 <label class="form-label">รี รหัสผ่าน</label>
+                 <input  class="form-control" ref={passwordConfirmRef}  type="password" name="password"  />
                 </div>
-                {/* <button className="btn btn-info" onClick={()=> navigate(`/users/updateProfile`)}>
-              กลับ
-            </button> */}
-              <button type="submit">
+              
+              <button type="submit" className="btn btn-success my-3 ms-4">
                 อัพเดท
               </button>
             </form>
-          </div>
+        
         </div>
       </div>
     </div>

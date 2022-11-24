@@ -1,4 +1,4 @@
-import "./single.scss";
+import "./view.css";
 import Sidebar from "../../components/sidebar/Sidebar";
 import {
 
@@ -47,35 +47,34 @@ const ViewUser = () => {
         {/* <Navbar /> */}
         <div className="top">
           <div className="left">
-            <div className="editButton">Edit</div>
-            <h1 className="title">Information</h1>
-            <div className="item">
-              <img
-                src={img}
-                alt=""
-                className="itemImg"
-              />
-              <div className="details">
-                <h1 className="itemTitle">{displayName}</h1>
-                <div className="detailItem">
-                  <span className="itemKey">Email:</span>
-                  <span className="itemValue">{email}</span>
-                </div>
-                <div className="detailItem">
-                  <span className="itemKey">Phone:</span>
-                  <span className="itemValue">{phone}</span>
-                </div>
-                <div className="detailItem">
-                  <span className="itemKey">Address:</span>
-                  <span className="itemValue">
-                  {address}
-                  </span>
-                </div> 
-                <div>
-                
+            <div className="container">
+                <div className="image mb-3">
+                        <img src={img} alt="" />
+                 </div>
+                 <h1 className="itemTitle  ms-4">{displayName}</h1>
 
+                 <div className="detailItem ms-4">
+                  <span className="itemKey"><b>อีเมล :</b></span>
+                  <span className="itemValue ms-1"> {email}</span>
                 </div>
-              </div>
+
+                <div className="detailItem ms-4">
+                  <span className="itemKey"><b>เบอร์โทรศัพท์ :</b></span>
+                  <span className="itemValue ms-1"> {phone}</span>
+                </div>
+
+                <div className="detailItem ms-4">
+                  <span className="itemKey"><b>ที่อยู่ :</b></span>
+                  <span className="itemValue ms-1"> {address}</span>
+                </div>
+
+           
+
+  
+
+
+
+                
             </div>
           </div>
         </div>

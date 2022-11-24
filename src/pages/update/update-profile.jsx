@@ -64,36 +64,21 @@ const UpdateAdmin = ()=>{
       <div className="newContainer">
         {/* <Navbar /> */}
         <div className="top">
-          <h1>ฟอร์มเเก้ไขผู้ดูเเลระบบ</h1>
+          <h1>ฟอร์มเเก้ไขอีเมล</h1>
         </div>
         <div className="bottom">
-          <div className="left">
-          
-          </div>
-          <div className="right">
             <form onSubmit={handleSubmit}>
-              <div className="formInput">
-              </div>
-              <div className="formInput">
-                
-                 <label >อีเมล</label>
-                 <input defaultValue={currentUser.email} onChange={handleChange} ref={emailRef} required type="email" name="email"  />
-                
-                 {/* <label >รหัสผ่าน</label>
-                 <input  ref={passwordRef}  type="password" name="password"  />
-
-                 <label >รี รหัสผ่าน</label>
-                 <input ref={passwordConfirmRef}  type="password" name="password"  /> */}
-          
+             
+              <div className="formInput  ms-4 mt-3">
+                 <label class="form-label" >อีเมล</label>
+                 <input class="form-control" defaultValue={currentUser.email} onChange={handleChange} ref={emailRef} required type="email" name="email"  />
                 </div>
-              <button type="submit">
+              <button className="btn btn-success my-3 ms-4" type="submit">
                 อัพเดท
               </button>
-              {/* <button className="btn btn-info" onClick={()=> navigate(`/users/updatePassword`)}>
-              จัดการรหัสผ่าน
-            </button> */}
+    
             </form>
-          </div>
+      
         </div>
       </div>
     </div>

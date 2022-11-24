@@ -17,6 +17,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 
 const initialState = {
+
   idSkin : "",
     nameThai : "",
     nameEng:"",
@@ -117,16 +118,13 @@ const UpdateSkin = ()=>{
           <h1>ฟอร์มเเก้ไขโรคผิวหนัง</h1>
         </div>
         <div className="bottom">
-          <div className="left">
-            <img
-              src={img}
-              alt=""
-            />
-          </div>
-          <div className="right">
-            <form onSubmit={handleSubmut}>
-              <div className="formInput">
-                <label htmlFor="file">
+             <form onSubmit={handleSubmut}>
+                <div className="container">
+                  <div className="mb-3 imagecontainer">
+                    <div className="image mb-3">
+                        <img  src={img} alt="" />
+                        </div>
+                       <label htmlFor="file">
                   อัพโหลดรูปภาพ: <DriveFolderUploadOutlinedIcon className="icon" />
                 </label>
                 <input
@@ -135,27 +133,35 @@ const UpdateSkin = ()=>{
                   onChange={(e) => setFile(e.target.files[0])}
                   style={{ display: "none" }}
                 />
-              </div>
-              <div className="formInput">
-              <label >รหัสโรคผิวหนัง</label>
-                 <input  type="number" name="idSkin" onChange={handleChange} pattern = "[0-9]*" value={idSkin} />
-                 <label >ชื่อภาษาไทย</label>
-                 <input  type="text" name="nameThai" onChange={handleChange} value={nameThai} />
-                 <label >ชื่อภาษาอังกิด</label>
-                 <input  type="text" name="nameEng" onChange={handleChange} value={nameEng} />
-                 <label >รายละเอียด</label>
-                 <textarea onChange={handleChange} value={detail}  name="" id="detail" cols="30" rows="10">
-                </textarea>
-
-
                 </div>
-                  {/* <button type="submit" >อัพเดท</button> */}
-              
-              <button disabled={per !== null && per < 100} type="submit">
-                อัพเดท
-              </button>
-            </form>
-          </div>
+                <div class="mb-3">
+                    <label class="form-label">รหัสโรคผิวหนัง</label>
+                 <input class="form-control" type="number" name="idSkin" onChange={handleChange} pattern = "[0-9]*" value={idSkin} />
+                  </div>
+
+                  <div class="mb-3">
+                  <label class="form-label">ชื่อภาษาไทย</label>
+                  <input class="form-control" type="text" name="nameThai" onChange={handleChange} value={nameThai} />
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="form-label">ชื่อภาษาอังกิด</label>
+                 <input class="form-control" type="text" name="nameEng" onChange={handleChange} value={nameEng} />
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="form-label">รายละเอียด</label>
+                <textarea class="form-control" onChange={handleChange} value={detail}  name="detail" id="detail"  cols="100" rows="30">
+                </textarea>                 
+</div>
+
+
+                 <button disabled={per !== null && per < 100} type="submit" className="btn btn-success">
+                  เพิ่มโรคผิวหนัง
+                  </button>
+                </div>
+                    </form>
+         
         </div>
       </div>
     </div>

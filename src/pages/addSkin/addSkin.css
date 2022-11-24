@@ -1,0 +1,19 @@
+img {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  object-fit: cover;
+  
+}
+
+/* .imagecontainer{
+  margin-left: 350px;
+} */
+
+.container{
+  margin-right: 100px;
+}
+.bottom{
+  display: flex;
+  justify-content: center;
+}

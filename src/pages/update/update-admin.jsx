@@ -116,16 +116,14 @@ const UpdateAdmin = ()=>{
           <h1>ฟอร์มเเก้ไขผู้ดูเเลระบบ</h1>
         </div>
         <div className="bottom">
-          <div className="left">
-            <img
-              src={img}
-              alt=""
-            />
-          </div>
-          <div className="right">
-            <form onSubmit={handleSubmut}>
-              <div className="formInput">
-                <label htmlFor="file">
+             <form onSubmit={handleSubmut}>
+                <div className="container">
+                  <div className="mb-3 imagecontainer">
+                    <div className="image mb-3">
+                     
+                        <img src={img} alt="" />
+                        </div>
+                        <label htmlFor="file">
                   อัพโหลดรูปภาพ: <DriveFolderUploadOutlinedIcon className="icon" />
                 </label>
                 <input
@@ -134,31 +132,32 @@ const UpdateAdmin = ()=>{
                   onChange={(e) => setFile(e.target.files[0])}
                   style={{ display: "none" }}
                 />
-              </div>
-              <div className="formInput">
-                 <label >ชื่อ</label>
-                 <input  type="text" name="displayName" onChange={handleChange} value={displayName} />
-
-                 {/* <label >อีเมล</label>
-                 <input  required type="email" name="email" onChange={handleChange} value={email} /> */}
-
-                 <label >เบอร์โทรศัพท์</label>
-                 <input required type="text" name="phone" onChange={handleChange} value={phone} />
-                 {/* <label >รหัสผ่าน</label>
-                 <input required type="password" name="password" onChange={handleChange} value={password} /> */}
-                 <label >ที่อยู่</label>
-                 <input required type="text" name="address" onChange={handleChange} value={address} />
-
-
-
                 </div>
-                  {/* <button type="submit" >อัพเดท</button> */}
-              
-              <button disabled={per !== null && per < 100} type="submit">
-                อัพเดท
-              </button>
-            </form>
-          </div>
+                <div class="mb-3">
+                    <label class="form-label">ชื่อ นามสกุล</label>
+                    <input class="form-control" onChange={handleChange} value={displayName} type="text" name="displayName" />
+
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="form-label">เบอร์โทรศัพท์</label>
+                    <input class="form-control"  onChange={handleChange} value={phone} name="phone" type="mail" />
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="form-label">ที่อยู่</label>
+                    <textarea class="form-control" onChange={handleChange} value={address} name="address" cols="100" rows="3"></textarea>                 
+                 </div>
+
+                 
+
+
+                 <button disabled={per !== null && per < 100} type="submit" className="btn btn-success">
+                  เพิ่มผู้ดูเเลระบบ
+                  </button>
+                </div>
+                    </form>
+         
         </div>
       </div>
     </div>

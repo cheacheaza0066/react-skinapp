@@ -1,19 +1,15 @@
-import "./addSkin.scss";
+import "./addSkin.css";
 import Sidebar from "../../components/sidebar/Sidebar";
-import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useEffect, useState } from "react";
 import {
   addDoc,
   collection,
-  doc,
-  getDoc,
-  serverTimestamp,
-  setDoc,
+
 } from "firebase/firestore";
-import { auth, db, storage } from "../../firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {  db, storage } from "../../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 
 const AddSkin = ({ inputs, title }) => {
   const [file, setFile] = useState("");
@@ -110,67 +106,56 @@ const AddSkin = ({ inputs, title }) => {
     <div className="new">
       <Sidebar />
       <div className="newContainer">
-        {/* <Navbar /> */}
         <div className="top">
-          <h1>{title}</h1>
+        <h1 className="text-center">เเบบฟอร์มเพิ่มโรคผิวหนัง</h1>
         </div>
+
         <div className="bottom">
-          <div className="left">
-            <img
-              src={
-                file
-                  ? URL.createObjectURL(file)
-                  : "https://cdn-icons-png.flaticon.com/512/1946/1946429.png"
-              }
-              alt=""
-            />
-          </div>
-          <div className="right">
-            <form onSubmit={handleAdd}>
-              <div className="formInput">
-                <label htmlFor="file">
-                  อัพโหลดรูปภาพ: <DriveFolderUploadOutlinedIcon className="icon" />
-                </label>
-                <input
-                required
-                  type="file"
-                  id="file"
-                  onChange={(e) => setFile(e.target.files[0])}
-                  style={{ display: "none" }}
-                />
-              </div>
+             <form onSubmit={handleAdd}>
+                <div className="container">
+                <div className="image mb-3">
+                        <img src={file ? URL.createObjectURL(file)
+                              : "https://cdn-icons-png.flaticon.com/512/1946/1946429.png"
+                          }
+                          alt=""
+                        />
+                        </div>
+                  <div className="mb-3 imagecontainer ">
+                        <label htmlFor="file">
+                              อัพโหลดรูปภาพ: <DriveFolderUploadOutlinedIcon className="icon" />
+                            </label>
+                            <input required type="file" id="file" onChange={(e) => setFile(e.target.files[0])}style={{ display: "none", cursor:"pointer" }}/>
+                    </div>
 
-              {/* {inputs.map((input) => (
-                <div className="formInput" key={input.id}>
-                  <label>{input.label}</label>
-                  <input
-                  required
-                    id={input.id}
-                    type={input.type}
-                    // placeholder={input.placeholder}
-                    onChange={handleInput}
-                  />
+
+                
+                <div class="mb-3">
+                    <label class="form-label">รหัสโรคผิวหนัง</label>
+                    <input class="form-control" onChange={(e)=>{setIdSkin(e.target.valueAsNumber)}} id="idSkin" type="number" pattern = "[0-9]*"/>
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="form-label">ชื่อภาษาไทย</label>
+                    <input class="form-control" onChange={handleInput} id="nameThai" type="text" />
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="form-label">ชื่อภาษาอังกิด</label>
+                    <input class="form-control"  onChange={handleInput} id="nameEng" type="text" />
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="form-label">รายละเอียด</label>
+                    <textarea class="form-control" onChange={handleInput} id="detail" cols="100" rows="3"></textarea>                 
+                 </div>
+
+
+                 <button disabled={per !== null && per < 100} type="submit" className="btn btn-success">
+                  เพิ่มโรคผิวหนัง
+                  </button>
                 </div>
-              ))} */}
-
-              <div className="formInput">
-              <label htmlFor="">รหัสโรคผิวหนัง</label>
-                <input onChange={(e)=>{setIdSkin(e.target.valueAsNumber)}} id="idSkin" type="number" pattern = "[0-9]*"/>
-                <label htmlFor="">ชื่อภาษาไทย</label>
-                <input onChange={handleInput} id="nameThai" type="text" />
-                <label htmlFor="">ชื่อภาษาอังกิด</label>
-                <input onChange={handleInput} id="nameEng" type="text" />
-                <label htmlFor="">รายละเอียด</label>
-                <textarea onChange={handleInput}  name="" id="detail" cols="30" rows="10">
-                </textarea>
-              </div>
-
-
-              <button disabled={per !== null && per < 100} type="submit" className="btn btn-success">
-                เพิ่มโรคผิวหนัง
-              </button>
-            </form>
-          </div>
+                    </form>
+         
         </div>
       </div>
     </div>

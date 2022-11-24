@@ -109,48 +109,55 @@ const AddUser = ({ inputs, title }) => {
           <h1>{title}</h1>
         </div>
         <div className="bottom">
-          <div className="left">
-            <img
-              src={
-                file
-                  ? URL.createObjectURL(file)
-                  : "https://cdn-icons-png.flaticon.com/512/1946/1946429.png"
-              }
-              alt=""
-            />
-          </div>
-          <div className="right">
-            <form onSubmit={handleAdd}>
-              <div className="formInput">
-                <label htmlFor="file">
-                  อัพโหลดรูปภาพ: <DriveFolderUploadOutlinedIcon className="icon" />
-                </label>
-                <input
-                required
-                  type="file"
-                  id="file"
-                  onChange={(e) => setFile(e.target.files[0])}
-                  style={{ display: "none" }}
-                />
-              </div>
-
-              {inputs.map((input) => (
-                <div className="formInput" key={input.id}>
-                  <label>{input.label}</label>
-                  <input
-                  required
-                    id={input.id}
-                    type={input.type}
-                    // placeholder={input.placeholder}
-                    onChange={handleInput}
-                  />
+             <form onSubmit={handleAdd}>
+                <div className="container">
+                  <div className="mb-3 imagecontainer">
+                    <div className="image mb-3">
+                        <img src={file ? URL.createObjectURL(file)
+                              : "https://cdn-icons-png.flaticon.com/512/1946/1946429.png"
+                          }
+                          alt=""
+                        />
+                        </div>
+                        <label htmlFor="file">
+                              อัพโหลดรูปภาพ: <DriveFolderUploadOutlinedIcon className="icon" />
+                            </label>
+                            <input required type="file" id="file" onChange={(e) => setFile(e.target.files[0])}style={{ display: "none", cursor:"pointer" }}/>
                 </div>
-              ))}
-              <button disabled={per !== null && per < 100} type="submit" className="btn btn-success">
-                เพิ่มผู้ดูเเลระบบ
-              </button>
-            </form>
-          </div>
+                <div class="mb-3">
+                    <label class="form-label">ชื่อ นามสกุล</label>
+                    <input class="form-control" onChange={handleInput} id="displayName" type="text" />
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="form-label">อีเมล</label>
+                    <input class="form-control" onChange={handleInput} id="email" type="text" />
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="form-label">รหัสผ่าน</label>
+                    <input class="form-control"  onChange={handleInput} id="password" type="password" />
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="form-label">เบอร์โทรศัพท์</label>
+                    <input class="form-control"  onChange={handleInput} id="phone" type="mail" />
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="form-label">ที่อยู่</label>
+                    <textarea class="form-control" onChange={handleInput} id="address" cols="100" rows="3"></textarea>                 
+                 </div>
+
+                 
+
+
+                 <button disabled={per !== null && per < 100} type="submit" className="btn btn-success">
+                  เพิ่มผู้ดูเเลระบบ
+                  </button>
+                </div>
+                    </form>
+         
         </div>
       </div>
     </div>

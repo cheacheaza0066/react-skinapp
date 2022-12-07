@@ -14,6 +14,7 @@ import { auth, db, storage } from "../../firebase";
 // import { createUserWithEmailAndPassword, getAuth, updateEmail, updatePassword  } from "firebase/auth";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useNavigate, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 
 
 const initialState = {
@@ -91,6 +92,11 @@ const UpdateSkin = ()=>{
         idSkin : Number(idSkin),
         timeStamp: serverTimestamp(),
       });
+      Swal.fire(
+        'สำเร็จ',
+        'อัพเดทโรคผิวหนังสำเร็จ',
+        'success',
+      )
       navigate(-1)
     } catch (err) {
       console.log(err);
@@ -157,7 +163,7 @@ const UpdateSkin = ()=>{
 
 
                  <button disabled={per !== null && per < 100} type="submit" className="btn btn-success">
-                  เพิ่มโรคผิวหนัง
+                  อัพเดทโรคผิวหนัง
                   </button>
                 </div>
                     </form>

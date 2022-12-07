@@ -14,6 +14,7 @@ import { auth, db, storage } from "../../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useNavigate, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const AddUser = ({ inputs, title }) => {
   const [file, setFile] = useState("");
@@ -94,6 +95,11 @@ const AddUser = ({ inputs, title }) => {
         ...data,
         timeStamp: serverTimestamp(),
       });
+      Swal.fire(
+        'สำเร็จ',
+        'เพิ่ม ADMIN สำเร็จ',
+        'success',
+      )
       navigate(-1)
     } catch (err) {
       console.log(err);

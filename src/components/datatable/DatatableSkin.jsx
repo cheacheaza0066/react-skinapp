@@ -13,6 +13,7 @@ import {
 import {  db } from "../../firebase";
 import {  deleteUser,} from "firebase/auth";
 // import userModel from "../../components/model/userModel";
+import Swal from "sweetalert2";
 
 
 
@@ -88,7 +89,11 @@ const DatatableSkin = () => {
       try {
         // await 
         await deleteDoc(doc(db, "Skin", id));
-        // console.log(id);
+        Swal.fire(
+          'ลบสำเร็จ',
+          'ลบโรคผิวหนังสำเร็จ',
+          'success',
+        )
       } catch (error) {
               console.log("err");
       }

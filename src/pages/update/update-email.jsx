@@ -6,6 +6,7 @@ import { useAuth } from "../../context/AuthContext";
 import { useNavigate, } from "react-router-dom";
 import { doc, serverTimestamp, updateDoc } from "firebase/firestore";
 import { auth, db } from "../../firebase";
+import Swal from "sweetalert2";
 
 
 const initialState = {
@@ -40,10 +41,16 @@ const UpdateEmail = ()=>{
         ...data,
         timeStamp: serverTimestamp(),
       });
+      localStorage.removeItem("user");
 
 
-      console.log("อัพเดท")
-        navigate("/users/")
+
+      Swal.fire(
+        'อัพเดทสำเร็จ',
+        'กรุณา LOGIN ใหม่',
+        'success',
+      )
+        navigate("/login")
     }
 
    

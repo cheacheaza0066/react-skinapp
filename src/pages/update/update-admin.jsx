@@ -159,7 +159,7 @@ const UpdateAdmin = ()=>{
 
 
                  <button disabled={per !== null && per < 100} type="submit" className="btn btn-success">
-                  เพิ่มผู้ดูเเลระบบ
+                  อัพเดทผู้ดูเเลระบบ
                   </button>
                 </div>
                     </form>

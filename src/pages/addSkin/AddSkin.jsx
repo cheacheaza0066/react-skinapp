@@ -10,6 +10,7 @@ import {  db, storage } from "../../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
+import Swal from "sweetalert2";
 
 const AddSkin = ({ inputs, title }) => {
   const [file, setFile] = useState("");
@@ -94,7 +95,11 @@ const AddSkin = ({ inputs, title }) => {
         ...data,
         idSkin : Number(idSkin)
       });
-      console.log(data)    
+      Swal.fire(
+        'สำเร็จ',
+        'เพิ่มโรคผิวหนังสำเร็จ',
+        'success',
+      )  
       navigate(-1)
 
     } catch (err) {

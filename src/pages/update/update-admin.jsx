@@ -14,7 +14,7 @@ import { auth, db, storage } from "../../firebase";
 // import { createUserWithEmailAndPassword, getAuth, updateEmail, updatePassword  } from "firebase/auth";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useNavigate, useParams } from "react-router-dom";
-
+import Swal from "sweetalert2";
 
 const initialState = {
   displayName : "",
@@ -89,7 +89,13 @@ const UpdateAdmin = ()=>{
         ...data,
         timeStamp: serverTimestamp(),
       });
+      Swal.fire(
+        'อัพเดทสำเร็จ',
+        'สำเร็จ',
+        'success',
+      )
       navigate(-1)
+
     } catch (err) {
       console.log(err);
     }
@@ -133,20 +139,20 @@ const UpdateAdmin = ()=>{
                   style={{ display: "none" }}
                 />
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">ชื่อ นามสกุล</label>
-                    <input class="form-control" onChange={handleChange} value={displayName} type="text" name="displayName" />
+                <div className="mb-3">
+                    <label className="form-label">ชื่อ นามสกุล</label>
+                    <input className="form-control" onChange={handleChange} value={displayName} type="text" name="displayName" />
 
                   </div>
 
-                  <div class="mb-3">
-                    <label class="form-label">เบอร์โทรศัพท์</label>
-                    <input class="form-control"  onChange={handleChange} value={phone} name="phone" type="mail" />
+                  <div className="mb-3">
+                    <label className="form-label">เบอร์โทรศัพท์</label>
+                    <input className="form-control"  onChange={handleChange} value={phone} name="phone" type="mail" />
                   </div>
 
-                  <div class="mb-3">
-                    <label class="form-label">ที่อยู่</label>
-                    <textarea class="form-control" onChange={handleChange} value={address} name="address" cols="100" rows="3"></textarea>                 
+                  <div className="mb-3">
+                    <label className="form-label">ที่อยู่</label>
+                    <textarea className="form-control" onChange={handleChange} value={address} name="address" cols="100" rows="3"></textarea>                 
                  </div>
 
                  

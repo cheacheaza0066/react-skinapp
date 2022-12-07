@@ -6,6 +6,7 @@ import { useAuth } from "../../context/AuthContext";
 import { useNavigate, } from "react-router-dom";
 import { doc, serverTimestamp, updateDoc } from "firebase/firestore";
 import { auth, db } from "../../firebase";
+import Swal from "sweetalert2";
 
 
 const initialState = {
@@ -31,15 +32,19 @@ const UpdatePassword = ()=>{
     e.preventDefault();
 
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-        alert("พาสเวิด ไม่ตรงกัน");
+      Swal.fire('รหัสผ่านไม่ตรงกัน')
+      navigate("/users/")
+
       }
 
-    const user = auth.currentUser;
-
-    if (passwordRef.current.value) {
+     else if (passwordRef.current.value) {
         updatePassword(currentUser,passwordRef.current.value);
-        console.log("สำเร็จ")
-        navigate("/users/updateProfile")
+        Swal.fire(
+          'สำเร็จ',
+          'อัพเดทรหัสผ่านสำเร็จ',
+          'success',
+        )
+        navigate("/users/")
       }
     
     // if (passwordRef.current.value) {
@@ -69,10 +74,10 @@ const UpdatePassword = ()=>{
             <form onSubmit={handleSubmit}>
              
               <div className="formInput ms-4 mt-3">
-                 <label class="form-label" >รหัสผ่าน</label>
+                 <label class="form-label" >รหัสผ่านใหม่</label>
                  <input  class="form-control" ref={passwordRef}  type="password" name="password"  />
 
-                 <label class="form-label">รี รหัสผ่าน</label>
+                 <label class="form-label">ยืนยันรหัสผ่าน</label>
                  <input  class="form-control" ref={passwordConfirmRef}  type="password" name="password"  />
                 </div>
               

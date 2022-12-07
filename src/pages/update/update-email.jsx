@@ -14,13 +14,11 @@ const initialState = {
 }
 
 
-const UpdateAdmin = ()=>{
+const UpdateEmail = ()=>{
   const navigate = useNavigate()
   const[data,setData] = useState(initialState);
 
   const emailRef = useRef();
-  // const passwordRef = useRef()
-  // const passwordConfirmRef = useRef()
   const { currentUser} = useAuth();
 
 
@@ -31,16 +29,12 @@ const UpdateAdmin = ()=>{
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-    //   alert("พาสเวิด ไม่ตรงกัน")
-    //   navigate("/users/")
-    // }
 
     const user = auth.currentUser;
+
+    console.log(currentUser)
     if (emailRef.current.value !== currentUser.email) {
       updateEmail(currentUser,emailRef.current.value);
-      console.log(user.uid)
-
       
       await updateDoc(doc(db, "users",user.uid), {
         ...data,
@@ -52,10 +46,9 @@ const UpdateAdmin = ()=>{
         navigate("/users/")
     }
 
-    
+   
     
   };
-
   
 
     return(
@@ -70,8 +63,8 @@ const UpdateAdmin = ()=>{
             <form onSubmit={handleSubmit}>
              
               <div className="formInput  ms-4 mt-3">
-                 <label class="form-label" >อีเมล</label>
-                 <input class="form-control" defaultValue={currentUser.email} onChange={handleChange} ref={emailRef} required type="email" name="email"  />
+                 <label className="form-label" >อีเมล</label>
+                 <input className="form-control" defaultValue={currentUser.email} onChange={handleChange} ref={emailRef} required type="email" name="email"  />
                 </div>
               <button className="btn btn-success my-3 ms-4" type="submit">
                 อัพเดท
@@ -85,4 +78,4 @@ const UpdateAdmin = ()=>{
     )
 }
 
-export default UpdateAdmin
+export default UpdateEmail

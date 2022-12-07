@@ -13,7 +13,7 @@ import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/AuthContext";
 import UpdateAdmin from "./pages/update/update-admin";
 import AddUser from "./pages/addUser/AddUser";
-import UpdateProfile from "./pages/update/update-profile";
+import UpdateEmail from "./pages/update/update-email";
 import UpdatePassword from "./pages/update/update-password";
 import ForgotPassword from "./pages/forgotPassword/ForgotPassword";
 import DeleteAccount from "./pages/deleteAccount/deleteAccount";
@@ -43,7 +43,7 @@ function App() {
                       <Route path="update/:id" element={ <RequireAuth> <UpdateAdmin inputs={userInputs} title="เเบบฟอร์มอัพเดทผู้ดูเเลระบบ" /></RequireAuth> }/>
                       <Route path="view/:id" element={ <RequireAuth> <ViewUser inputs={userInputs} /></RequireAuth> }/>
                       <Route path="addUser" element={ <RequireAuth> <AddUser inputs={userInputs} title="เเบบฟอร์มเพิ่มผู้ดูเเลระบบ" /></RequireAuth> }/>
-                      <Route path="updateProfile" element={ <RequireAuth> <UpdateProfile inputs={userInputs} title="เเบบฟอร์มเพิ่มผู้ดูเเลระบบ" /></RequireAuth> }/>
+                      <Route path="update-email" element={ <RequireAuth> <UpdateEmail inputs={userInputs} title="เเบบฟอร์มเพิ่มผู้ดูเเลระบบ" /></RequireAuth> }/>
                       <Route path="updatePassword" element={ <RequireAuth> <UpdatePassword inputs={userInputs} title="เเบบฟอร์มเพิ่มผู้ดูเเลระบบ" /></RequireAuth> }/>
                       <Route path="deleteAccount" element={ <RequireAuth> <DeleteAccount inputs={userInputs} title="ลบบัญชีผู้ใช้งาน" /></RequireAuth> }/>
                 </Route>

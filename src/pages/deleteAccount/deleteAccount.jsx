@@ -71,7 +71,7 @@ const DeleteAccount = () => {
           <div className="bottom">
 
               <form onSubmit={handleSubmit}>
-              <div class="col-md-12 text-center">
+              <div className="col-md-12 text-center">
             <button type="submit" class="button btn btn-danger btn-lg">ลบบัญชีผู้ใช้</button>
         </div>
                 

@@ -110,7 +110,7 @@ console.log("ออกจากระบบ")
          
           <p className="title">ตั้งค่าบัญชี</p>
 
-          <Link to="/users/updateProfile" style={{ textDecoration: "none" }}>
+          <Link to="/users/update-email" style={{ textDecoration: "none" }}>
             <li>
               <StoreIcon className="icon" />
               <span>จัดการอีเมล</span>

@@ -150,8 +150,33 @@ const AddSkin = ({ inputs, title }) => {
                   </div>
 
                   <div class="mb-3">
-                    <label class="form-label">รายละเอียด</label>
+                    <label class="form-label">ความเป็นมาของโรคผิวหนัง</label>
                     <textarea class="form-control" onChange={handleInput} id="detail" cols="100" rows="3"></textarea>                 
+                 </div>
+
+                 <div class="mb-3">
+                    <label class="form-label">สาเหตุการเกิดโรคผิวหนัง</label>
+                    <textarea class="form-control" onChange={handleInput} id="cause" cols="100" rows="3"></textarea>                 
+                 </div>
+
+                 <div class="mb-3">
+                    <label class="form-label">การป้องกันการเกิดโรคผิวหนัง</label>
+                    <textarea class="form-control" onChange={handleInput} id="protect" cols="100" rows="3"></textarea>                 
+                 </div>
+
+                 <div class="mb-3">
+                    <label class="form-label">อาการของโรคผิวหนัง</label>
+                    <textarea class="form-control" onChange={handleInput} id="symptom" cols="100" rows="3"></textarea>                 
+                 </div>
+
+                 <div class="mb-3">
+                    <label class="form-label">วิธีการรักษาโรคผิวหนัง</label>
+                    <textarea class="form-control" onChange={handleInput} id="therapy" cols="100" rows="3"></textarea>                 
+                 </div>
+                 
+                 <div class="mb-3">
+                    <label class="form-label">ยาที่ใช้ในการรักษา</label>
+                    <textarea class="form-control" onChange={handleInput} id="medical" cols="100" rows="3"></textarea>                 
                  </div>
 
 

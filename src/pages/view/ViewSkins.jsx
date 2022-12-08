@@ -1,12 +1,8 @@
 import "./view.css";
 import Sidebar from "../../components/sidebar/Sidebar";
 import {
-
- 
   doc,
   getDoc,
-
-  
 }  from "firebase/firestore";
 import { db, } from "../../firebase";
 import { useEffect, useState } from "react";
@@ -15,14 +11,17 @@ import { useNavigate, useParams } from "react-router-dom";
 const initialState = {
 nameThai : "",
 nameEng:"",
-  detail:"",
-  
+detail:"",
+cause:"",
+protect:"",
+symptom:"",
+therapy:"",
+medical:"",
 }
-
 const ViewSkin = () => {
   const navigate = useNavigate()
   const[data,setData] = useState(initialState);
-  const {nameThai,nameEng,detail,img} = data;
+  const {nameThai,nameEng,detail,cause,protect,symptom,therapy,medical,img} = data;
 
   const {id} = useParams();
   useEffect(()=>{
@@ -58,11 +57,37 @@ const ViewSkin = () => {
                   <span className="itemValue ms-1"> {nameEng}</span>
                 </div>
 
-                <h4 className="detail-h1 ms-4 mt-5"><b>ข้อมูลโรค {nameThai}</b></h4>
-
+                <h4 className="detail-h1 ms-4 mt-5"><b>ความเป็นมาของโรค{nameThai}</b></h4>
                 <div className="detail ms-4 me-4">
                   <span className="itemValue ms-1"> {detail}</span>
                 </div>
+
+                
+                <h4 className="detail-h1 ms-4 mt-5"><b>สาเหตุการเกิดโรคผิวหนัง{nameThai}</b></h4>
+                <div className="detail ms-4 me-4">
+                  <span className="itemValue ms-1"> {cause}</span>
+                </div>
+                
+                <h4 className="detail-h1 ms-4 mt-5"><b>การป้องกันการเกิดโรค{nameThai}</b></h4>
+                <div className="detail ms-4 me-4">
+                  <span className="itemValue ms-1"> {protect}</span>
+                </div>
+                
+                <h4 className="detail-h1 ms-4 mt-5"><b>อาการของโรค{nameThai}</b></h4>
+                <div className="detail ms-4 me-4">
+                  <span className="itemValue ms-1"> {symptom}</span>
+                </div>
+                
+                <h4 className="detail-h1 ms-4 mt-5"><b>วิธีการรักษาโรค{nameThai}</b></h4>
+                <div className="detail ms-4 me-4">
+                  <span className="itemValue ms-1"> {therapy}</span>
+                </div>
+
+                <h4 className="detail-h1 ms-4 mt-5"><b>ยาที่ใช้ในการรักษาโรค{nameThai}</b></h4>
+                <div className="detail ms-4 me-4">
+                  <span className="itemValue ms-1"> {medical}</span>
+                </div>
+
             </div>
           </div>
         </div>

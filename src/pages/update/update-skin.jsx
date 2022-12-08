@@ -19,17 +19,23 @@ import Swal from "sweetalert2";
 
 const initialState = {
 
-  idSkin : "",
+    idSkin : "",
     nameThai : "",
     nameEng:"",
     detail : "",
-  img : ""
+    cause:"",
+protect:"",
+symptom:"",
+therapy:"",
+    img : ""
 }
 const UpdateSkin = ()=>{
   const navigate = useNavigate()
   const[data,setData] = useState(initialState);
   
-  const {idSkin,nameThai,nameEng,detail,img} = data;
+  // const {idSkin,nameThai,nameEng,detail,img} = data;
+  const {idSkin,nameThai,nameEng,detail,cause,protect,symptom,therapy,medical,img} = data;
+
   const [file, setFile] = useState("");
   const [per, setPerc] = useState(null);
   const [isSubmit,setIsSubmit] = useState(null);
@@ -156,10 +162,36 @@ const UpdateSkin = ()=>{
                   </div>
 
                   <div class="mb-3">
-                    <label class="form-label">รายละเอียด</label>
-                <textarea class="form-control" onChange={handleChange} value={detail}  name="detail" id="detail"  cols="100" rows="30">
+                    <label class="form-label">ความเป็นมาของโรคผิวหนัง</label>
+                <textarea class="form-control" onChange={handleChange} value={detail}  name="detail" id="detail"  cols="100" rows="10">
                 </textarea>                 
-</div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">สาเหตุการเกิดโรคผิวหนัง</label>
+                <textarea class="form-control" onChange={handleChange} value={cause}  name="detail" id="detail"  cols="100" rows="10">
+                </textarea>                 
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">การป้องกันการเกิดโรคผิวหนัง</label>
+                <textarea class="form-control" onChange={handleChange} value={protect}  name="detail" id="detail"  cols="100" rows="10">
+                </textarea>                 
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">อาการของโรคผิวหนัง</label>
+                <textarea class="form-control" onChange={handleChange} value={symptom}  name="detail" id="detail"  cols="100" rows="10">
+                </textarea>                 
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">วิธีการรักษาโรคผิวหนัง</label>
+                <textarea class="form-control" onChange={handleChange} value={therapy}  name="detail" id="detail"  cols="100" rows="10">
+                </textarea>                 
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">ยาที่ใช้ในการรักษา </label>
+                <textarea class="form-control" onChange={handleChange} value={medical}  name="detail" id="detail"  cols="100" rows="10">
+                </textarea>                 
+                </div>
+
 
 
                  <button disabled={per !== null && per < 100} type="submit" className="btn btn-success">

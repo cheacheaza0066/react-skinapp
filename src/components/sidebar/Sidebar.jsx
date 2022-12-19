@@ -1,13 +1,11 @@
 import "./sidebar.scss";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import HouseOutlinedIcon from '@mui/icons-material/HouseOutlined';
 import StoreIcon from "@mui/icons-material/Store";
-import SettingsApplicationsIcon from "@mui/icons-material/SettingsApplications";
-import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
-import SettingsSystemDaydreamOutlinedIcon from "@mui/icons-material/SettingsSystemDaydreamOutlined";
-import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
-import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import KeyOutlinedIcon from '@mui/icons-material/KeyOutlined';
+import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
+import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import HealingTwoToneIcon from '@mui/icons-material/HealingTwoTone';import SettingsSystemDaydreamOutlinedIcon from "@mui/icons-material/SettingsSystemDaydreamOutlined";
+import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { Link } from "react-router-dom";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
@@ -88,21 +86,21 @@ console.log("ออกจากระบบ")
           <p className="title">หน้าหลัก</p>
           <Link to="/">
           <li>
-            <DashboardIcon className="icon" />
+            <HouseOutlinedIcon className="icon" />
             <span>หน้าหลัก</span>
           </li>
           </Link>
           
-          <p className="title">จัดการโรคผิวหนัง</p>
+          <p className="title">การจัดการ</p>
           <Link  to="/users" style={{ textDecoration: "none" }}>
             <li>
-              <PersonOutlineIcon className="icon" />
+              <SupervisorAccountIcon className="icon" />
               <span>จัดการผู้ดูเเลระบบ</span>
             </li>
           </Link>
           <Link to="/skin-diseases" style={{ textDecoration: "none" }}>
             <li>
-              <StoreIcon className="icon" />
+              <HealingTwoToneIcon className="icon" />
               <span>จัดการโรคผิวหนัง</span>
             </li>
           </Link>
@@ -112,20 +110,20 @@ console.log("ออกจากระบบ")
 
           <Link to="/users/update-email" style={{ textDecoration: "none" }}>
             <li>
-              <StoreIcon className="icon" />
+              <EmailOutlinedIcon className="icon" />
               <span>จัดการอีเมล</span>
             </li>
           </Link>
           <Link to="/users/updatePassword" style={{ textDecoration: "none" }}>
             <li>
-              <StoreIcon className="icon" />
+              <KeyOutlinedIcon className="icon" />
               <span>จัดการรหัสผ่าน</span>
             </li>
           </Link>
           
           <Link to="/users/DeleteAccount" style={{ textDecoration: "none" }}>
             <li>
-              <StoreIcon className="icon" />
+              <DeleteForeverOutlinedIcon className="icon" />
               <span>ลบบัญชีผู้ใช้</span>
             </li>
           </Link>

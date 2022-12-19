@@ -28,7 +28,7 @@ export const userColumns = [
   {
     field: "address",
     headerName: "ที่อยู่",
-    width: 200,
+    width: 350,
   },
  
 ];
@@ -51,7 +51,32 @@ export const SkinColumns = [
   },
   {
     field: "detail",
-    headerName: "รายละเอียด",
+    headerName: "ความเป็นมา",
+    width: 200,
+  },
+  // {
+  //   field: "cause",
+  //   headerName: "สาเหตุการเกิดโรคผิวหนัง",
+  //   width: 110,
+  // },
+  // {
+  //   field: "protect",
+  //   headerName: "การป้องกันการเกิดโรค",
+  //   width: 110,
+  // },
+  // {
+  //   field: "symptom",
+  //   headerName: "อาการของโรค",
+  //   width: 110,
+  // },
+  {
+    field: "therapy",
+    headerName: "วิธีการรักษาโรค",
+    width: 200,
+  },
+  {
+    field: "medical",
+    headerName: "ยาที่ใช้ในการรักษาโรค",
     width: 200,
   },
   // {

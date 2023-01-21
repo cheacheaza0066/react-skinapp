@@ -124,7 +124,7 @@ console.log("ออกจากระบบ")
           <Link to="/users/DeleteAccount" style={{ textDecoration: "none" }}>
             <li>
               <DeleteForeverOutlinedIcon className="icon" />
-              <span>ลบบัญชีผู้ใช้</span>
+              <span>ลบบัญชี</span>
             </li>
           </Link>
 

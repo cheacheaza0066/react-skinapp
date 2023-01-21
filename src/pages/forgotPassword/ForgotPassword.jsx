@@ -34,22 +34,25 @@ const ForgotPassword = () => {
     <div className="forgotPassword">
     <div className="card">
       <div className="card-body">
-        <h2 className="text-center mb-4">Password Reset</h2>
+        <div className="head">
+        <h2 className="text-center mb-2">รีเซ็ตรหัสผ่าน</h2>
+        <p className="mb-4">กรูณากรอกอีเมลเพื่อรีเซ็ตรหัสผ่าน</p>
+        </div>
         {error && <Alert variant="danger">{error}</Alert>}
         {message && <Alert variant="success">{message}</Alert>}
 
         <form onSubmit={handleSubmit}>
           <div className="form-group" id="email">
-            <label>Email</label>
+            <label>อีเมล</label>
             <input className="form-control" type="email"  ref={emailRef} required />
           </div>
           
           <button disabled={loading} className="w-100 mt-3 btn btn-success" type="submit">
-            Reset Password
+            รีเซ็ตรหัสผ่าน
           </button>
         </form>
         <div className="w-100 text-center mt-3">
-            <Link to="/login">LOGIN</Link>
+            <Link to="/login"><p>กลับไปยังหน้าล็อคอิน</p></Link>
           </div>
       </div>
     </div>

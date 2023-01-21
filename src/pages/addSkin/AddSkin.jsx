@@ -145,7 +145,7 @@ const AddSkin = ({ inputs, title }) => {
                   </div>
 
                   <div class="mb-3">
-                    <label class="form-label">ชื่อภาษาอังกิด</label>
+                    <label class="form-label">ชื่อภาษาอังกฤษ</label>
                     <input class="form-control"  onChange={handleInput} id="nameEng" type="text" />
                   </div>
 

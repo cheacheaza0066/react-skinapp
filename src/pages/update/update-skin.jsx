@@ -157,7 +157,7 @@ const UpdateSkin = ()=>{
                   </div>
 
                   <div class="mb-3">
-                    <label class="form-label">ชื่อภาษาอังกิด</label>
+                    <label class="form-label">ชื่อภาษาอังกฤษ</label>
                  <input class="form-control" type="text" name="nameEng" onChange={handleChange} value={nameEng} />
                   </div>
 
@@ -168,27 +168,27 @@ const UpdateSkin = ()=>{
                 </div>
                 <div class="mb-3">
                     <label class="form-label">สาเหตุการเกิดโรคผิวหนัง</label>
-                <textarea class="form-control" onChange={handleChange} value={cause}  name="detail" id="detail"  cols="100" rows="10">
+                <textarea class="form-control" onChange={handleChange} value={cause}  name="cause" id="cause"  cols="100" rows="10">
                 </textarea>                 
                 </div>
                 <div class="mb-3">
                     <label class="form-label">การป้องกันการเกิดโรคผิวหนัง</label>
-                <textarea class="form-control" onChange={handleChange} value={protect}  name="detail" id="detail"  cols="100" rows="10">
+                <textarea class="form-control" onChange={handleChange} value={protect}  name="protect" id="protect"  cols="100" rows="10">
                 </textarea>                 
                 </div>
                 <div class="mb-3">
                     <label class="form-label">อาการของโรคผิวหนัง</label>
-                <textarea class="form-control" onChange={handleChange} value={symptom}  name="detail" id="detail"  cols="100" rows="10">
+                <textarea class="form-control" onChange={handleChange} value={symptom}  name="symptom" id="symptom"  cols="100" rows="10">
                 </textarea>                 
                 </div>
                 <div class="mb-3">
                     <label class="form-label">วิธีการรักษาโรคผิวหนัง</label>
-                <textarea class="form-control" onChange={handleChange} value={therapy}  name="detail" id="detail"  cols="100" rows="10">
+                <textarea class="form-control" onChange={handleChange} value={therapy}  name="therapy" id="therapy"  cols="100" rows="10">
                 </textarea>                 
                 </div>
                 <div class="mb-3">
                     <label class="form-label">ยาที่ใช้ในการรักษา </label>
-                <textarea class="form-control" onChange={handleChange} value={medical}  name="detail" id="detail"  cols="100" rows="10">
+                <textarea class="form-control" onChange={handleChange} value={medical}  name="medical" id="medical"  cols="100" rows="10">
                 </textarea>                 
                 </div>
 

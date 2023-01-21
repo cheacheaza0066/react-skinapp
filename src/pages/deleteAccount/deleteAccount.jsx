@@ -66,13 +66,13 @@ const DeleteAccount = () => {
         <div className="newContainer">
           {/* <Navbar /> */}
           <div className="top">
-            <h1>ลบบัญชีผู้ใช้</h1>
+            <h1>ลบบัญชีผู้ดูเเลระบบ</h1>
           </div>
           <div className="bottom">
 
               <form onSubmit={handleSubmit}>
               <div className="col-md-12 text-center">
-            <button type="submit" class="button btn btn-danger btn-lg">ลบบัญชีผู้ใช้</button>
+            <button type="submit" class="button btn btn-danger btn-lg">ลบบัญชีผู้ดูเเลระบบ</button>
         </div>
                 
               </form>

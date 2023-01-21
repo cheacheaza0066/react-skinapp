@@ -67,7 +67,7 @@ const UpdatePassword = ()=>{
       <div className="newContainer">
         {/* <Navbar /> */}
         <div className="top">
-          <h1>ฟอร์มเเก้ไขผู้ดูเเลระบบ</h1>
+          <h1>ฟอร์มเเก้ไขรหัสผ่าน</h1>
         </div>
         <div className="bottom">
          {/* อัพพาส */}
@@ -82,7 +82,7 @@ const UpdatePassword = ()=>{
                 </div>
               
               <button type="submit" className="btn btn-success my-3 ms-4">
-                อัพเดท
+                อัพเดทรหัสผ่าน
               </button>
             </form>
         

@@ -8,3 +8,7 @@
 .card{
   padding: 40px;
 }
+
+label,h2,button,p,span,h4,b,h1,textarea{
+  font-family: 'Mitr', sans-serif;
+}

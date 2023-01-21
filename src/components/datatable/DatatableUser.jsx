@@ -117,7 +117,7 @@ const DatatableUser = () => {
             </button>
             
             <button className="btn btn-warning" onClick={()=> navigate(`/users/update/${params.id}`)}>
-              update
+              เเก้ไข
             </button>
 
   
@@ -138,7 +138,7 @@ const DatatableUser = () => {
         <b>ผู้ดูเเลระบบ</b>
         
         <Link to="/users/AddUser" className="btn btn-success">
-          + เพิ่มผู้ดูเเลระบบ
+          <b>+ เพิ่มผู้ดูเเลระบบ</b>
           {/* <button>+ เพิ่มผู้ดูเเลระบบ</button> */}
         </Link>
       </div>

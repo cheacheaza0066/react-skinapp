@@ -132,7 +132,7 @@ const DatatableSkin = () => {
         <b>โรคผิวหนัง</b>
         
         <Link to="/skin-diseases/addSkin" className="btn btn-success">
-          + เพิ่มโรคผิวหนัง
+          <b>+ เพิ่มโรคผิวหนัง</b>
           {/* <button>+ เพิ่มผู้ดูเเลระบบ</button> */}
         </Link>
       </div>

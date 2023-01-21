@@ -32,42 +32,32 @@ const Login = () => {
   };
 
   return (
-    // <div classNameName="login">
-    //   <form onSubmit={handleLogin}>
-    //     <input
-    //       type="email"
-    //       placeholder="email"
-    //       onChange={(e) => setEmail(e.target.value)}
-    //     />
-    //     <input
-    //       type="password"
-    //       placeholder="password"
-    //       onChange={(e) => setPassword(e.target.value)}
-    //     />
-    //     <button type="submit">Login</button>
-    //     {error && <span>Wrong email or password!</span>}
-    //   </form>
-    // </div>
     <div className="login">
     <div className="card">
       <div className="card-body">
-        <h2 className="text-center mb-4">LOGIN</h2>
+      {/* <h1 className="text-center mb-4">เเอปพลิเคชันให้คำเเนะนำโรคผิวหนัง</h1> */}
+        <div className="head">
+        <h2 className="text-center mb-2">ล็อคอิน</h2> 
+        <p className="mb-5">กรุณาล็อคอินเพื่อเข้าสู่ระบบ จัดการเเอปพลิเคชันให้คำเเนะนำโรคผิวหนัง</p>
+        </div>
+        
+        
         {error && <Alert variant="danger">{error}</Alert>}
         <form onSubmit={handleLogin}>
           <div className="form-group" id="email">
-            <label className="mb-2">Email</label>
+            <label className="mb-2">อีเมล</label>
             <input className="form-control mb-2" type="email"  onChange={(e) => setEmail(e.target.value)} required />
           </div>
           <div className="form-group" id="password">
-            <label className="mb-2">Password</label>
+            <label className="mb-2">รหัสผ่าน</label>
             <input className="form-control" type="password" onChange={(e) => setPassword(e.target.value)} required />
           </div>
           <button disabled={loading} className="w-100 mt-3 btn btn-success" type="submit">
-            LOGIN
+            เข้าสู่ระบบ
           </button>
         </form>
         <div className="w-100 text-center mt-3">
-          <Link to="/forgot-password">Forgot Password</Link>
+          <Link to="/forgot-password"><p>ลืมรหัสผ่าน</p></Link>
         </div>
       </div>
     </div>

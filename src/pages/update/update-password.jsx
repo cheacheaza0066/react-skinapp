@@ -33,7 +33,7 @@ const UpdatePassword = ()=>{
 
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       Swal.fire('รหัสผ่านไม่ตรงกัน')
-      navigate("/users/")
+      navigate("/users/updatePassword")
 
       }
 
@@ -75,10 +75,10 @@ const UpdatePassword = ()=>{
              
               <div className="formInput ms-4 mt-3">
                  <label class="form-label" >รหัสผ่านใหม่</label>
-                 <input  class="form-control" ref={passwordRef}  type="password" name="password"  />
+                 <input  class="form-control" placeholder="รหัสผ่านใหม่" ref={passwordRef}  type="password" name="password" required />
 
-                 <label class="form-label">ยืนยันรหัสผ่าน</label>
-                 <input  class="form-control" ref={passwordConfirmRef}  type="password" name="password"  />
+                 <label class="form-label">ยืนยันรหัสผ่านใหม่</label>
+                 <input  class="form-control" placeholder="ยืนยันรหัสผ่านใหม่" ref={passwordConfirmRef}  type="password" name="password" required />
                 </div>
               
               <button type="submit" className="btn btn-success my-3 ms-4">

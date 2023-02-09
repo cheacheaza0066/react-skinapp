@@ -17,11 +17,12 @@ protect:"",
 symptom:"",
 therapy:"",
 medical:"",
+refskin:""
 }
 const ViewSkin = () => {
   const navigate = useNavigate()
   const[data,setData] = useState(initialState);
-  const {nameThai,nameEng,detail,cause,protect,symptom,therapy,medical,img} = data;
+  const {nameThai,nameEng,detail,cause,protect,symptom,therapy,medical,refskin,img} = data;
 
   const {id} = useParams();
   useEffect(()=>{
@@ -86,6 +87,11 @@ const ViewSkin = () => {
                 <h4 className="detail-h1 ms-4 mt-5"><b>ยาที่ใช้ในการรักษาโรค{nameThai}</b></h4>
                 <div className="detail ms-4 me-4">
                   <span className="itemValue ms-1"> {medical}</span>
+                </div>
+
+                <h4 className="detail-h1 ms-4 mt-5"><b>เเหล่งที่มา</b></h4>
+                <div className="detail ms-4 me-4">
+                  <span className="itemValue ms-1"> {refskin}</span>
                 </div>
 
             </div>

@@ -19,7 +19,7 @@ import Swal from "sweetalert2";
 
 const initialState = {
 
-    idSkin : "",
+    // idSkin : "",
     nameThai : "",
     nameEng:"",
     detail : "",
@@ -27,6 +27,7 @@ const initialState = {
 protect:"",
 symptom:"",
 therapy:"",
+refskin:"",
     img : ""
 }
 const UpdateSkin = ()=>{
@@ -34,7 +35,7 @@ const UpdateSkin = ()=>{
   const[data,setData] = useState(initialState);
   
   // const {idSkin,nameThai,nameEng,detail,img} = data;
-  const {idSkin,nameThai,nameEng,detail,cause,protect,symptom,therapy,medical,img} = data;
+  const {idSkin,nameThai,nameEng,detail,cause,protect,symptom,therapy,medical,refskin,img} = data;
 
   const [file, setFile] = useState("");
   const [per, setPerc] = useState(null);
@@ -95,7 +96,7 @@ const UpdateSkin = ()=>{
 
       await updateDoc(doc(db, "Skin", id), {
         ...data,
-        idSkin : Number(idSkin),
+        // idSkin : Number(idSkin),
         timeStamp: serverTimestamp(),
       });
       Swal.fire(
@@ -146,10 +147,10 @@ const UpdateSkin = ()=>{
                   style={{ display: "none" }}
                 />
                 </div>
-                <div class="mb-3">
+                {/* <div class="mb-3">
                     <label class="form-label">รหัสโรคผิวหนัง</label>
                  <input class="form-control" type="number" name="idSkin" onChange={handleChange} pattern = "[0-9]*" value={idSkin} />
-                  </div>
+                  </div> */}
 
                   <div class="mb-3">
                   <label class="form-label">ชื่อภาษาไทย</label>
@@ -191,7 +192,11 @@ const UpdateSkin = ()=>{
                 <textarea class="form-control" onChange={handleChange} value={medical}  name="medical" id="medical"  cols="100" rows="10">
                 </textarea>                 
                 </div>
-
+                <div class="mb-3">
+                    <label class="form-label">เเหล่งที่มา </label>
+                <textarea class="form-control" onChange={handleChange} value={refskin}  name="refskin" id="refskin"  cols="100" rows="10">
+                </textarea>                 
+                </div>
 
 
                  <button disabled={per !== null && per < 100} type="submit" className="btn btn-success">

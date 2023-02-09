@@ -15,9 +15,11 @@ import Swal from "sweetalert2";
 const AddSkin = ({ inputs, title }) => {
   const [file, setFile] = useState("");
   const [data, setData] = useState({});
-  const [idSkin, setIdSkin] = useState();
+  // const [idSkin, setIdSkin] = useState();
   const [per, setPerc] = useState(null);
   const navigate = useNavigate()
+  // const id = firebase.firestore().collection('Skin').doc().id
+
   // const {id} = useParams();
   // useEffect(()=>{
   //   id && getSingleUser();
@@ -32,43 +34,51 @@ const AddSkin = ({ inputs, title }) => {
   // }
 
   useEffect(() => {
-    const uploadFile = () => {
+    try{
+      const uploadFile = () => {
       
-      const name = new Date().getTime() + file.name;
-
-      console.log(name);
-      const storageRef = ref(storage, file.name);
-      const uploadTask = uploadBytesResumable(storageRef, file);
-
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {
-          const progress =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log("Upload is " + progress + "% done");
-          setPerc(progress);
-          switch (snapshot.state) {
-            case "paused":
-              console.log("Upload is paused");
-              break;
-            case "running":
-              console.log("Upload is running");
-              break;
-            default:
-              break;
+        const name = new Date().getTime() + file.name;
+  
+        console.log(name);
+        const storageRef = ref(storage, file.name);
+        const uploadTask = uploadBytesResumable(storageRef, file);
+  
+        uploadTask.on(
+          "state_changed",
+          (snapshot) => {
+            const progress =
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log("Upload is " + progress + "% done");
+            setPerc(progress);
+            switch (snapshot.state) {
+              case "paused":
+                console.log("Upload is paused");
+                break;
+              case "running":
+                console.log("Upload is running");
+                break;
+              default:
+                break;
+            }
+          },
+          (error) => {
+            console.log(error);
+          },
+          () => {
+            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+              setData((prev) => ({ ...prev, img: downloadURL }));
+            });
           }
-        },
-        (error) => {
-          console.log(error);
-        },
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            setData((prev) => ({ ...prev, img: downloadURL }));
-          });
-        }
-      );
-    };
-    file && uploadFile();
+        );
+      };
+      file && uploadFile();
+    } catch (error) {
+      Swal.fire(
+        'ไม่สำเร็จ',
+        'โปรดอัพโหลดรูปภาพ',
+        'error',
+      )
+    }
   }, [file]);
 
 //   console.log(data);
@@ -90,10 +100,13 @@ const AddSkin = ({ inputs, title }) => {
     //   });
     console.log(typeof idSkin);
 
+    
 
     await addDoc(collection(db, "Skin"), {
+        // question_id: id,
         ...data,
-        idSkin : Number(idSkin)
+        
+        // idSkin : Number(idSkin)
       });
       Swal.fire(
         'สำเร็จ',
@@ -103,7 +116,11 @@ const AddSkin = ({ inputs, title }) => {
       navigate(-1)
 
     } catch (err) {
-      console.log(err);
+      Swal.fire(
+        'ไม่สำเร็จ',
+        'เพิ่มโรคผิวหนังไม่สำเร็จ',
+        'error',
+      ) 
     }
   };
 
@@ -120,63 +137,68 @@ const AddSkin = ({ inputs, title }) => {
                 <div className="container">
                 <div className="image mb-3">
                         <img src={file ? URL.createObjectURL(file)
-                              : "https://cdn-icons-png.flaticon.com/512/1946/1946429.png"
+                              : "https://cdn-icons-png.flaticon.com/512/8418/8418513.png"
                           }
                           alt=""
                         />
                         </div>
                   <div className="mb-3 imagecontainer ">
                         <label htmlFor="file">
-                              อัพโหลดรูปภาพ: <DriveFolderUploadOutlinedIcon className="icon" />
+                              อัพโหลดรูปภาพ:
                             </label>
-                            <input required type="file" id="file" onChange={(e) => setFile(e.target.files[0])}style={{ display: "none", cursor:"pointer" }}/>
+                            <input required type="file" id="file" onChange={(e) => setFile(e.target.files[0])}style={{  cursor:"pointer" }}/>
                     </div>
 
 
                 
-                <div class="mb-3">
+                {/* <div class="mb-3">
                     <label class="form-label">รหัสโรคผิวหนัง</label>
-                    <input class="form-control" onChange={(e)=>{setIdSkin(e.target.valueAsNumber)}} id="idSkin" type="number" pattern = "[0-9]*"/>
-                  </div>
+                    <input class="form-control" onChange={(e)=>{setIdSkin(e.target.valueAsNumber)}} id="idSkin" type="number" required pattern = "[0-9]*"/>
+                  </div> */}
 
                   <div class="mb-3">
                     <label class="form-label">ชื่อภาษาไทย</label>
-                    <input class="form-control" onChange={handleInput} id="nameThai" type="text" />
+                    <input class="form-control" placeholder="ชื่อโรคผิวหนังภาษาไทย" onChange={handleInput} id="nameThai" type="text" required/>
                   </div>
 
                   <div class="mb-3">
                     <label class="form-label">ชื่อภาษาอังกฤษ</label>
-                    <input class="form-control"  onChange={handleInput} id="nameEng" type="text" />
+                    <input class="form-control" placeholder="ชื่อโรคผิวหนังภาษาอังกฤษ" onChange={handleInput} id="nameEng" type="text" required/>
                   </div>
 
                   <div class="mb-3">
                     <label class="form-label">ความเป็นมาของโรคผิวหนัง</label>
-                    <textarea class="form-control" onChange={handleInput} id="detail" cols="100" rows="3"></textarea>                 
+                    <textarea class="form-control" placeholder="ความเป็นมาของโรคผิวหนัง" onChange={handleInput} id="detail" cols="100" rows="3" required></textarea >                 
                  </div>
 
                  <div class="mb-3">
                     <label class="form-label">สาเหตุการเกิดโรคผิวหนัง</label>
-                    <textarea class="form-control" onChange={handleInput} id="cause" cols="100" rows="3"></textarea>                 
+                    <textarea class="form-control" placeholder="สาเหตุการเกิดโรคผิวหนัง" onChange={handleInput} id="cause" cols="100" rows="3" required></textarea>                 
                  </div>
 
                  <div class="mb-3">
                     <label class="form-label">การป้องกันการเกิดโรคผิวหนัง</label>
-                    <textarea class="form-control" onChange={handleInput} id="protect" cols="100" rows="3"></textarea>                 
+                    <textarea class="form-control" placeholder="การป้องกันการเกิดโรคผิวหนัง" onChange={handleInput} id="protect" cols="100" rows="3" required></textarea>                 
                  </div>
 
                  <div class="mb-3">
                     <label class="form-label">อาการของโรคผิวหนัง</label>
-                    <textarea class="form-control" onChange={handleInput} id="symptom" cols="100" rows="3"></textarea>                 
+                    <textarea class="form-control" placeholder="อาการของโรคผิวหนัง" onChange={handleInput} id="symptom" cols="100" rows="3" required></textarea>                 
                  </div>
 
                  <div class="mb-3">
                     <label class="form-label">วิธีการรักษาโรคผิวหนัง</label>
-                    <textarea class="form-control" onChange={handleInput} id="therapy" cols="100" rows="3"></textarea>                 
+                    <textarea class="form-control" placeholder="วิธีการรักษาโรคผิวหนัง" onChange={handleInput} id="therapy" cols="100" rows="3" required></textarea>                 
                  </div>
                  
                  <div class="mb-3">
                     <label class="form-label">ยาที่ใช้ในการรักษา</label>
-                    <textarea class="form-control" onChange={handleInput} id="medical" cols="100" rows="3"></textarea>                 
+                    <textarea class="form-control" placeholder="ยาที่ใช้ในการรักษา" onChange={handleInput} id="medical" cols="100" rows="3" required></textarea>                 
+                 </div>
+
+                 <div class="mb-3">
+                    <label class="form-label">เเหล่งที่มา</label>
+                    <textarea class="form-control" placeholder="เเหล่งที่มา1,เเหล่งที่มา2" onChange={handleInput} id="refskin" cols="100" rows="3" required></textarea>                 
                  </div>
 
 

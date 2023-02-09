@@ -6,6 +6,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import Sidebar from "../../components/sidebar/Sidebar";
 import { deleteDoc, doc, getDoc } from "firebase/firestore";
 import { deleteObject, getStorage, ref } from "firebase/storage";
+import Swal from "sweetalert2";
 
 const DeleteAccount = () => {
    const user = auth.currentUser
@@ -46,7 +47,11 @@ const DeleteAccount = () => {
             await deleteUser(auth.currentUser);
             await deleteDoc(doc(db, "users", user.uid));
 
-
+            Swal.fire(
+              'สำเร็จ',
+              'ลบบัญชีสำเร็จ',
+              'success',
+            )
             navigate("/login")
             localStorage.removeItem("user");
    

@@ -15,6 +15,7 @@ import { auth, db } from "../../firebase";
 import { useNavigate, useParams } from "react-router-dom";
 import { deleteDoc, doc } from "firebase/firestore";
 import { async } from "@firebase/util";
+import Swal from "sweetalert2";
 
 const Sidebar = () => {
   const { dispatch } = useContext(DarkModeContext);
@@ -24,6 +25,11 @@ const Sidebar = () => {
 
   const logout = async () => {
     await signOut(auth);
+    Swal.fire(
+      'สำเร็จ',
+      'ออกจากระบบสำเร็จ',
+      'success',
+    )
     navigate("/login")
     localStorage.removeItem("user");
 console.log("ออกจากระบบ")

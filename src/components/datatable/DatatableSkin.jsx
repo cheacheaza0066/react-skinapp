@@ -114,7 +114,7 @@ const DatatableSkin = () => {
               ดูข้อมูล
             </button>
             <button className="btn btn-warning" onClick={()=> navigate(`/skin-diseases/update/${params.id}`)}>
-              update
+              เเก้ไข
             </button>
             <div className="btn btn-danger"  onClick={() => handleDelete(params.row.id)}>
               ลบ

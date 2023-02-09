@@ -23,7 +23,7 @@ const ForgotPassword = () => {
           await sendPasswordResetEmail(auth,emailRef.current.value)
           setMessage("โปรดเช็คที่อีเมลของท่าน")
         } catch {
-          setError("ไม่สามารถรีเซ็ตรหัสผ่านได้")
+          setError("อีเมลของท่านไม่ถูกต้อง")
         }
     
         setLoading(false)

@@ -51,7 +51,7 @@ export const SkinColumns = [
   },
   {
     field: "detail",
-    headerName: "ความเป็นมา",
+    headerName: "ความเป็นมาของโรคผิวหนัง",
     width: 200,
   },
   // {
@@ -71,12 +71,12 @@ export const SkinColumns = [
   // },
   {
     field: "therapy",
-    headerName: "วิธีการรักษาโรค",
+    headerName: "วิธีการรักษาโรคผิวหนัง",
     width: 200,
   },
   {
     field: "medical",
-    headerName: "ยาที่ใช้ในการรักษาโรค",
+    headerName: "ยาที่ใช้ในการรักษาโรคผิวหนัง",
     width: 200,
   },
   // {

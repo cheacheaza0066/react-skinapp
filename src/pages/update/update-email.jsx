@@ -46,7 +46,7 @@ const UpdateEmail = ()=>{
 
 
       Swal.fire(
-        'อัพเดทสำเร็จ',
+        'อัพเดทอีเมลสำเร็จ',
         'กรุณา LOGIN ใหม่',
         'success',
       )
